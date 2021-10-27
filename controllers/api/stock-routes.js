@@ -7,11 +7,13 @@ router.get('/:symbol', (req, res) => {
             symbol: req.params.symbol
         }
     })
-    .then(response => {
-        if(response.length < 1){
+    .then(holdings => {
+        if(holdings.length < 1){
             return res.status(404).json({message: 'No holdings found with this symbol.'});
         }
-        return res.json(response);
+        return res.render('single-stock', {
+            holdings: holdings.map(holding => holding.toJSON())
+        })
     })
     .catch(err => {
         console.log(err);

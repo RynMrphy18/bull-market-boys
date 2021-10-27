@@ -1,19 +1,19 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-    return res.render('dashboard');
+    return res.render('index');
 });
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-        return res.redirect('/');
+        return res.redirect('/dashboard');
     }
     return res.render('login');
 });
 
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
-        return res.redirect('/');
+        return res.redirect('/dashboard');
     }
     return res.render('signup');
 });
