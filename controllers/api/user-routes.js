@@ -21,7 +21,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    // expects {email: 'lernantino@gmail.com', password: 'password1234'}
     User.findOne({
         where: {
             username: req.body.username
@@ -29,7 +28,7 @@ router.post('/login', (req, res) => {
     })
     .then(response => {
         if (!response) {
-            return res.status(400).json({message: 'No user with that email address!'});
+            return res.status(400).json({message: 'No user with that username!'});
         }
         
         const validPassword = response.checkPassword(req.body.password);
