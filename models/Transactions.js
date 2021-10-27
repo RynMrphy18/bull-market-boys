@@ -48,6 +48,7 @@ Transactions.init(
     },
     {
         sequelize,
+        timestamps: true,
         freezeTableName: true,
         underscored: false,
         modelName: 'transactions'
