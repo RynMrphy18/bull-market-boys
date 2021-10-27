@@ -2,15 +2,15 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Holding extends Model{
-    getHoldingsByUserId(userId){
-        return this.findAll({
-            where: {
-                user_id : {
-                    [Op.eq]: userId
-                }
-            }
-        });
-    }
+    // getHoldingsByUserId(userId){
+    //     return this.findAll({
+    //         where: {
+    //             user_id : {
+    //                 [Op.eq]: userId
+    //             }
+    //         }
+    //     });
+    // }
 }
 
 Holding.init(
@@ -36,6 +36,13 @@ Holding.init(
                 key: 'id'
             }
         }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: false,
+        modelName: 'holding'
     }
 )
 

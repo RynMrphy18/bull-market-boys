@@ -1,6 +1,6 @@
-import User from './User';
-import Holding from './Holding';
-import Transaction from './Transaction';
+const User = require('./User')
+const Holding = require('./Holding');
+const Transaction = require('./Transaction');
 
 // associating the holding table to the user table thru the user id foreign key
 User.hasMany(Holding, {
