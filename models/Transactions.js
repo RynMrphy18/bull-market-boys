@@ -30,6 +30,14 @@ Transactions.init(
             }
         },
 
+        type: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isIn: [['buy', 'sell']],
+            }
+        },
+
         user_id: {
             type: DataTypes.STRING,
             references: {
