@@ -1,7 +1,17 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Transaction extends Model{}
+class Transaction extends Model{
+    getTransactionsByUserId(userId){
+        return this.findAll({
+            where: {
+                user_id : {
+                    [Op.eq]: userId
+                }
+            }
+        });
+    }
+}
 
 Transaction.init(
     {
@@ -37,9 +47,8 @@ Transaction.init(
                 isIn: [['buy', 'sell']],
             }
         },
-
         user_id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id'
