@@ -25,7 +25,8 @@ Stock.init({
     },
     close: {
         type: DataTypes.DECIMAL(10,2),
-        allowNull: false,
+        allowNull: true,
+        defaultValue: 0,
     },
     high: {
         type: DataTypes.DECIMAL(10,2),
@@ -35,19 +36,22 @@ Stock.init({
         type: DataTypes.DECIMAL(10,2),
         allowNull: false,
     },
-    yeahHigh: {
+    yearHigh: {
         type: DataTypes.DECIMAL(10,2),
-        allowNull: false,
+        allowNull: true,
     },
     yearLow: {
         type: DataTypes.DECIMAL(10,2),
-        allowNull: false,
+        allowNull: true,
     },
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'stock'
-})
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: false,
+        modelName: 'stock'
+    }
+)
 
 module.exports = Stock;
