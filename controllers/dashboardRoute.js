@@ -15,7 +15,7 @@ router.get('/', withAuth, (req, res) => {
             return res.status(404).json({message: 'No user found with this id'});
         }
         console.log(user);
-        return res.render('dashboard', {user});
+        return res.render('dashboard', {user, loggedIn: req.session.loggedIn});
     })
     .catch(err => console.log(err));
 });
