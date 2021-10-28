@@ -11,6 +11,23 @@ router.get('/', (req, res) => {
         });
 });
 
+// get amount of money the current session user has
+router.get('/money', (req, res) => {
+    User.findOne({
+        attributes: ['cash'],
+        where: {
+            id: req.session.user_id
+        },
+    })
+    .then(response => {
+        if (!response) {
+            return res.status(404).json({message: 'No user found with this id'});
+        }
+        return res.json(response.cash);
+    })
+    .catch(err => console.log(err));
+})
+
 // create a new user
 router.post('/', (req, res) => {
     User.create({
