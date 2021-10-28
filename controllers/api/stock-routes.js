@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
         return res.status(400).json({ message: 'No stock with that symbol!' });
     }
 
-    // TODO: if stock exists in the table then it needs to be UPDATED not created...
-    Stock.create({
+    // create an object with important info from the stock data
+    let stock = {
         symbol: symbol,
         price: stockData.price.regularMarketPrice,
         open: stockData.summaryDetail.open,
@@ -26,11 +26,9 @@ router.get('/', async (req, res) => {
         low: stockData.summaryDetail.dayLow,
         yearHigh: stockData.summaryDetail.fiftyTwoWeekHigh,
         yearLow: stockData.summaryDetail.fiftyTwoWeekLow,
-    })
-    .then(response => {
-        return res.json(response);
-    })
-    .catch(err => console.log(err));
+    }
+
+    return res.json(stock);
 });
 
 module.exports = router;
