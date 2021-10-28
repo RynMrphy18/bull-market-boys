@@ -12,9 +12,9 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    // if (req.session.loggedIn) {
-    //     return res.redirect('/dashboard');
-    // }
+    if (req.session.loggedIn) {
+        return res.redirect('/dashboard');
+    }
     return res.render('signup');
 });
 

@@ -59,7 +59,7 @@ Transaction.init(
         sequelize,
         timestamps: true,
         freezeTableName: true,
-        underscored: false,
+        underscored: true,
         modelName: 'transaction'
     }
 )
