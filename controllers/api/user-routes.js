@@ -1,27 +1,29 @@
 const router = require('express').Router();
 const {User} = require('../../models');
 
+// get all users
 router.get('/', (req, res) => {
     User.findAll({})
-        .then(dbUserData => res.json(dbUserData))
+        .then(response => res.json(response))
         .catch(err => {
             console.log(err);
             return res.status(500).json(err);
         });
 });
 
+// create a new user
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
     })
-    .then(dbUserData => {
+    .then(response => {
         req.session.save(() => {
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
+            req.session.user_id = response.id;
+            req.session.username = response.username;
             req.session.loggedIn = true;
     
-            return res.json(dbUserData);
+            return res.json(response);
         });
     })
     .catch(err => {
@@ -36,23 +38,23 @@ router.post('/login', (req, res) => {
             username: req.body.username
         }
     })
-    .then(dbUserData => {
-        if (!dbUserData) {
-            res.status(400).json({ message: 'No user with that username!' });
+    .then(response => {
+        if (!response) {
+            return res.status(400).json({ message: 'No user with that username!' });
         }
 
-        const validPassword = dbUserData.checkPassword(req.body.password);
+        const validPassword = response.checkPassword(req.body.password);
 
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect password!' });
+            return res.status(400).json({ message: 'Incorrect password!' });
         }
 
         req.session.save(() => {
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
+            req.session.user_id = response.id;
+            req.session.username = response.username;
             req.session.loggedIn = true;
     
-        res.json({ user: dbUserData, message: 'You are now logged in!' });
+        res.json({ user: response, message: 'You are now logged in!' });
         });
     });
 });
@@ -60,10 +62,10 @@ router.post('/login', (req, res) => {
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
-            res.status(204).end();
+            return res.status(204).end();
         });
     }else{
-        res.status(404).end();
+        return res.status(404).end();
     }
 });
 
