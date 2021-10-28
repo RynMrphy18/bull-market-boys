@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
             req.session.username = response.username;
             req.session.loggedIn = true;
     
-        res.json({ user: response, message: 'You are now logged in!' });
+        return res.json({ user: response, message: 'You are now logged in!' });
         });
     });
 });
