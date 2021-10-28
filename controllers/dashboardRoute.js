@@ -9,6 +9,7 @@ router.get('/', withAuth, (req, res) => {
         where: {
             id: req.session.user_id
         },
+        raw: true
     })
     .then(user => {
         if (!user) {

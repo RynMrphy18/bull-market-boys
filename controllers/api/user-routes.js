@@ -43,6 +43,8 @@ router.post('/login', (req, res) => {
             return res.status(400).json({ message: 'No user with that username!' });
         }
 
+        console.log(response);
+
         const validPassword = response.checkPassword(req.body.password);
 
         if (!validPassword) {

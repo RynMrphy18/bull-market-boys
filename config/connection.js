@@ -8,9 +8,6 @@ const sequelize = process.env.JAWSDB_URL
         dialect: 'mysql',
         dialectOptions: {
             decimalNumbers: true,
-        },
-        query: {
-            raw: true
         }
     });
 
