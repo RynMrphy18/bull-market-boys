@@ -15,4 +15,6 @@ User.hasMany(Transaction, {
 });
 Transaction.belongsTo(User);
 
+Holding.hasMany(Transaction, {as: 'transactions'});
+
 module.exports = {User, Holding, Transaction, Stock};

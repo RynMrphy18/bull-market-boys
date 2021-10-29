@@ -11,14 +11,19 @@ Holding.init(
             primaryKey: true,
             autoIncrement: true
         },
+
         symbol: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        shares: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+
+        transactions: {
+            references: {
+                model: 'transaction',
+                key: 'id'
+            }
         },
+
         user_id: {
             type: DataTypes.INTEGER,
             references: {

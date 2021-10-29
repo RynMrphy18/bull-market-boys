@@ -32,7 +32,7 @@ Transaction.init(
             allowNull: false
         },
 
-        quantity: {
+        shares: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
@@ -47,6 +47,7 @@ Transaction.init(
                 isIn: [['buy', 'sell']],
             }
         },
+
         user_id: {
             type: DataTypes.INTEGER,
             references: {
