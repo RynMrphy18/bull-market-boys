@@ -17,7 +17,8 @@ Holding.init(
             allowNull: false
         },
 
-        transactions: {
+        transaction_id: {
+            type: DataTypes.UUID,
             references: {
                 model: 'transaction',
                 key: 'id'
@@ -25,7 +26,7 @@ Holding.init(
         },
 
         user_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             references: {
                 model: 'user',
                 key: 'id'
