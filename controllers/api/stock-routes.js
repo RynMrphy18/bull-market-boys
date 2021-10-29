@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const yahooFinance = require('yahoo-finance');
-const {Stock} = require('../../models');
 
 // query yahoo finance for stock data
 // update stock table with new data queried

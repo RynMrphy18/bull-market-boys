@@ -1,6 +1,12 @@
 const router = require('express').Router();
 const {User, Holding, Transaction} = require('../../models');
 
+router.get('/', (req, res) => {
+    Holding.findAll({})
+    .then(holdings => res.json(holdings))
+    .catch(err => console.log(err));
+});
+
 router.get('/:symbol', (req, res) => {
     Holding.findAll({
         where: {

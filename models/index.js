@@ -1,7 +1,6 @@
 const User = require('./User')
 const Holding = require('./Holding');
 const Transaction = require('./Transaction');
-const Stock = require('./Stock');
 
 // associating the holding table to the user table thru the user id foreign key
 User.hasMany(Holding, {
@@ -22,6 +21,4 @@ Holding.belongsToMany(Transaction, {
     through: 'transaction_holding'
 });
 
-
-
-module.exports = {User, Holding, Transaction, Stock};
+module.exports = {User, Holding, Transaction};
