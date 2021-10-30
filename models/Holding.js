@@ -17,13 +17,13 @@ Holding.init(
             allowNull: false
         },
 
-        // transaction_id: {
-        //     type: DataTypes.UUID,
-        //     references: {
-        //         model: 'transaction',
-        //         key: 'id'
-        //     }
-        // },
+        transaction_id: {
+            type: DataTypes.UUID,
+            references: {
+                model: 'transaction',
+                key: 'id'
+            }
+        },
 
         user_id: {
             type: DataTypes.UUID,

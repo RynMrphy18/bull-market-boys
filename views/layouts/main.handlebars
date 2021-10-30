@@ -29,12 +29,16 @@
                 </a>
                 <button id="logout" class="btn btn-outline-danger mt-2">logout</button>
                 {{else}}
+                {{#unless signup}}
                 <a href="/signup">
                     <div class="btn btn-outline-primary mt-2">signup</div>
                 </a>
+                {{/unless}}
+                {{#unless login}}
                 <a href="/login">
                     <div class="btn btn-primary mt-2">login</div>
                 </a>
+                {{/unless}}
                 {{/if}}
             </nav>
         </div>
