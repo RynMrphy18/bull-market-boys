@@ -15,14 +15,14 @@
 <body>
     <header class="container-fluid bg-light">
         <div class="row p-3">
-            <div class="col">
+            <div class="col-8">
                 <a href="/">
                     <h1>
                         <span class="iconify" data-icon="ri:exchange-dollar-fill" ></span> Fomo Mock Exchange
                     </h1>
                 </a>
             </div>
-            <nav class="col text-right ">
+            <nav class="col-4 text-right ">
                 {{#if loggedIn}}
                 <a href="/dashboard">
                     <div class="btn btn-primary mt-2">dashboard</div>
@@ -42,8 +42,8 @@
     <main class="container">
         {{{ body }}}
     </main>
-    <footer>
-        Thanks for visiting!
+    <footer class="container-fluid bg-light text-center pt-3">
+        <p class="fs-1">Thanks for visiting!</p>
     </footer>
     {{#if loggedIn}}
         <script src="/javascript/logout.js"></script>

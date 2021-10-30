@@ -5,3 +5,9 @@ a:hover {
 .btn-primary a {
     color: white;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
