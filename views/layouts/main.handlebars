@@ -5,35 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fomo Mock Exchange</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <h1>
-                <a href="/"><span class="iconify" data-icon="whh:stocks"></span> Fomo Mock Exchange</a>
-            </h1>
-            <nav>
+    <header class="container-fluid bg-light">
+        <div class="row p-3">
+            <div class="col">
+                <a href="/">
+                    <h1>
+                        <span class="iconify" data-icon="ri:exchange-dollar-fill" ></span> Fomo Mock Exchange
+                    </h1>
+                </a>
+            </div>
+            <nav class="col text-right ">
                 {{#if loggedIn}}
-                <a href="/dashboard">dashboard</a>
-                <button id="logout">logout</button>
+                <a href="/dashboard">
+                    <div class="btn btn-primary mt-2">dashboard</div>
+                </a>
+                <button id="logout" class="btn btn-outline-danger mt-2">logout</button>
                 {{else}}
-                <a href="/signup">signup</a>
-                <a href="/login">login</a>
+                <a href="/signup">
+                    <div class="btn btn-outline-primary mt-2">signup</div>
+                </a>
+                <a href="/login">
+                    <div class="btn btn-primary mt-2">login</div>
+                </a>
                 {{/if}}
             </nav>
-        </header>
-        <main>
-            {{{ body }}}
-        </main>
-        <footer>
-            Thanks for visiting!
-        </footer>
-    </div>
+        </div>
+    </header>
+    <main class="container">
+        {{{ body }}}
+    </main>
+    <footer>
+        Thanks for visiting!
+    </footer>
     {{#if loggedIn}}
         <script src="/javascript/logout.js"></script>
     {{/if}}
