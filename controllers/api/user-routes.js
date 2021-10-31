@@ -4,9 +4,11 @@ const {User, Holding, Transaction, Stock} = require('../../models');
 // get all users
 router.get('/', (req, res) => {
     User.findAll({
+        attributes: {exclude: ['password']},
         include: [
             {
-                model: Holding
+                model: Holding,
+                attributes: {exclude: ['user_id']},
             }
         ]
     })
