@@ -11,14 +11,14 @@ Holding.belongsTo(User);
 // associating the transaction table to the user table thru the user id foreign key
 User.hasMany(Transaction, {
     foreignKey: 'user_id'
-});
+}); 
 Transaction.belongsTo(User);
 
-Transaction.belongsToMany(Holding, {
-    through: 'transaction_holding'
-});
-Holding.belongsToMany(Transaction, {
-    through: 'transaction_holding'
+Transaction.belongsTo(Holding);
+Holding.hasMany(Transaction, {
+    foreignKey: 'holding_id',
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
 });
 
 module.exports = {User, Holding, Transaction};

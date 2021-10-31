@@ -6,6 +6,7 @@ yahooFinance.quote({
     modules: [ 'price', 'summaryDetail' ] // see the docs for the full list
 }).then((stockData) => {
     let stockInfo = {
+        name: stockData.price.longName,
         symbol: stockData.price.symbol,
         price: stockData.price.regularMarketPrice,
         open: stockData.summaryDetail.open,

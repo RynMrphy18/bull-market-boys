@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Transaction, Holding, Transaction_Holding} = require('../../models');
+const {Transaction, Holding} = require('../../models');
 
 router.get('/', (req, res) => {
     Transaction.findAll({})
