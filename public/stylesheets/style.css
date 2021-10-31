@@ -1,9 +1,13 @@
-a:hover {
+a, a:hover {
     text-decoration: none;
 }
 
 .btn-primary a {
     color: white;
+}
+
+#cash h3 {
+    margin-bottom: 0px;
 }
 
 footer {

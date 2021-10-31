@@ -11,7 +11,7 @@ router.get('/', withAuth, (req, res) => {
         },
         include: [
             {
-                model: Holding,
+                model: Holding
             }
         ]
     })
@@ -21,8 +21,13 @@ router.get('/', withAuth, (req, res) => {
         }
         let user = dbUserData.dataValues;
         let holdings = dbUserData.holdings;
-        console.log(holdings)
-        return res.render('dashboard', {user, holdings, loggedIn: req.session.loggedIn});
+        const symbols = holdings.map(holding => holding.dataValues.symbol);
+        console.log(`
+    = = = = = = = = = = = = = = =
+    ${user.username}'s holdings: ${symbols}
+    = = = = = = = = = = = = = = =
+        `);
+        return res.render('dashboard', {user, holdings, symbols: symbols, loggedIn: req.session.loggedIn, dashboard: true});
     })
     .catch(err => console.log(err));
 });
