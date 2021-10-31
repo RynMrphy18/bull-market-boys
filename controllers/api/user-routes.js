@@ -3,7 +3,13 @@ const {User, Holding, Transaction, Stock} = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
-    User.findAll({})
+    User.findAll({
+        include: [
+            {
+                model: Holding
+            }
+        ]
+    })
         .then(response => res.json(response))
         .catch(err => {
             console.log(err);

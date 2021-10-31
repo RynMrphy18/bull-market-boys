@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth.js');
-const {User} = require('../models');
+const {User, Holding} = require('../models');
 
 // display the users main screen (once logged in)
 router.get('/', withAuth, (req, res) => {
@@ -9,14 +9,20 @@ router.get('/', withAuth, (req, res) => {
         where: {
             id: req.session.user_id
         },
-        raw: true
+        include: [
+            {
+                model: Holding,
+            }
+        ]
     })
-    .then(user => {
-        if (!user) {
+    .then(dbUserData => {
+        if (!dbUserData) {
             return res.status(404).json({message: 'No user found with this id'});
         }
-        console.log(user);
-        return res.render('dashboard', {user, loggedIn: req.session.loggedIn});
+        let user = dbUserData.dataValues;
+        let holdings = dbUserData.holdings;
+        console.log(holdings)
+        return res.render('dashboard', {user, holdings, loggedIn: req.session.loggedIn});
     })
     .catch(err => console.log(err));
 });

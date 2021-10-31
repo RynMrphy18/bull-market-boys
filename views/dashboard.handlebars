@@ -2,3 +2,8 @@
 <p>Cash balance: ${{user.cash}}</p>
 
 <h2>Holdings:</h2>
+<ul class='holding-list'>
+    {{#each holdings as |holding|}}
+    {{> stocks/stock-block holding.dataValues}}
+    {{/each}}
+</ul>
