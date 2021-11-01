@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth');
 // query yahoo finance for stock data
 router.get('/:symbol', withAuth, async (req, res) => {
 
-    const symbol = req.params.symbol;
+    const symbol = req.params.symbol.toUpperCase();
 
     yahooFinance.quote({
         symbol: symbol,
@@ -17,7 +17,7 @@ router.get('/:symbol', withAuth, async (req, res) => {
 
         let stock = {
             symbol: symbol,
-            price: stockData.price.regularMarketPrice,
+            price: stockData.price.regularMarketPrice.toFixed(2),
             open: stockData.summaryDetail.open,
             // close: stockData.summaryDetail.close,
             high: stockData.summaryDetail.dayHigh,
