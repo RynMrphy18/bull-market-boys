@@ -7,6 +7,8 @@ async function searchFormHandler(event) {
 
     if(search) {
         document.location.replace(`/search/${search}`);
+    }else{
+        alert('Please enter a stock symbol before searching!');
     }
 }
 

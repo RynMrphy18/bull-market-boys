@@ -7,4 +7,17 @@
     <p>52 Week Low: {{stock.yearLow}}</p>
 </ul>
 
+<form action="" class="d-flex justify-content-center mt-6">
+    <div class="field mb-3">
+        <select id="framework" class="p-1">
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+        </select>
+
+        <input type="number" id="quantity" class="" placeholder="Enter quantity here"/>
+
+        <button type="submit" class="btn btn-primary">Confirm</button>
+    </div>
+</form>
+
 <script src="/javascript/trade.js"></script>
