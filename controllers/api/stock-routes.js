@@ -3,8 +3,8 @@ const yahooFinance = require('yahoo-finance');
 
 // query yahoo finance for stock data
 // update stock table with new data queried
-router.get('/', async (req, res) => {
-    let symbol = req.body.symbol;
+router.post('/', async (req, res) => {
+    let symbol = req.body.search;
 
     let stockData = await yahooFinance.quote({
         symbol: symbol,

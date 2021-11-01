@@ -4,13 +4,28 @@
         <h2>Hello, {{user.username}}!</h2>
     </div>
 </div>
+
 <div class="row">
-    <div class="col-4 ">
+    <div class="col-4">
         <div id="cash" class="bg-success text-white text-center rounded-pill p-3">
             <h3><span class="iconify" data-icon="emojione:money-bag"></span> Cash: ${{user.cash}}</h3>
         </div>
     </div>
-    <div class="col-8">
+
+    <div class="d-flex justify-content-center mt-5">
+        <form class="search-form bg-light p-3 rounded col-12">
+            <div class="mb-3">
+                <label for="search-field" class="form-label">Stock Symbol:</label>
+                <input type="text" id="search-field" class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-12">
         <article class="holding-list bg-warning rounded p-4 bg-opacity-25">
             {{#if holdings}}
             <h3 class="text-center mb-4">Your Current Holdings:</h3>
@@ -27,3 +42,5 @@
         </article>
     </div>
 </div>
+
+<script src="/javascript/search.js"></script>
