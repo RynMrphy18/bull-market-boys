@@ -6,27 +6,23 @@ async function tradeFormHandler(event) {
 
     const type = document.querySelector('#type').value.trim();
     const quantity = document.querySelector('#quantity').value.trim();
-    // const symbol = document.querySelector('').value.trim();
+
+    // symbol is hardcoded in right now but needs to be variable!
+    const symbol = 'APPL';
+
     // const cost = quantity * price;
 
-    if(type && quantity != 0){
-        if(type === 'buy'){
-            // fetch the users money
-            const response = await fetch('', {
-                method: 'post',
-                body: JSON.stringify({
-                    symbol,
-                    cost,
-                    username,
-                    password
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            });
-            // if the user money is greater than cost
-                // holding.create()
-            // else
-                // alert('You do not have the funds required to make this purchase.');
-        }
+    // making sure that the quantity is greater than 0
+    if(type && quantity > 0){
+        const order = await fetch('/api/holdings/', {
+            method: 'post',
+            body: JSON.stringify({
+                symbol,
+                quantity,
+                type
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
 }
 

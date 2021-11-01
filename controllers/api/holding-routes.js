@@ -42,4 +42,44 @@ router.get('/:symbol', (req, res) => {
     });
 });
 
+// create a new holding
+router.post('/', (req, res) => {
+    // this will create a new holding if the user doesnt own that stock already
+    // Holding.create({
+    //     shares: req.body.shares,
+    //     symbol: req.body.symbol,
+    //     user_id: req.body.user_id
+    //     // user_id: req.session.user_id
+    // })
+    // .then(holdings => {
+    //     return res.json(holdings);
+    // });
+
+    const transactionType = req.body.type;
+
+    if(transactionType === "buy"){
+        Holding.increment({
+            shares: req.body.quantity
+        }, 
+        {
+            where: {
+                symbol: req.body.symbol,
+                user_id: req.session.user_id
+            }
+        })
+    }
+
+    if(transactionType === "sell"){
+        Holding.increment({
+            shares: -req.body.quantity
+        }, 
+        {
+            where: {
+                symbol: req.body.symbol,
+                user_id: req.session.user_id
+            }
+        })
+    }
+})
+
 module.exports = router;
