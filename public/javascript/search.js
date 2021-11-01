@@ -6,7 +6,7 @@ async function searchFormHandler(event) {
     const search = document.querySelector('#search-field').value.trim();
 
     if(search) {
-        document.location.replace(`/api/stocks/${search}`);
+        document.location.replace(`/search/${search}`);
     }
 }
 

@@ -1,15 +1,11 @@
 const router = require('express').Router();
 const yahooFinance = require('yahoo-finance');
+const withAuth = require('../utils/auth');
 
 // query yahoo finance for stock data
-router.get('/:symbol', async (req, res) => {
+router.get('/:symbol', withAuth, async (req, res) => {
 
     const symbol = req.params.symbol;
-
-    // let stockData = await yahooFinance.quote({
-    //     symbol: symbol,
-    //     modules: [ 'price', 'summaryDetail' ]
-    // });
 
     yahooFinance.quote({
         symbol: symbol,
@@ -17,7 +13,6 @@ router.get('/:symbol', async (req, res) => {
     })
     .then(response => {
         // create an object with important info from the stock data
-
         let stockData = response;
 
         let stock = {
@@ -30,10 +25,11 @@ router.get('/:symbol', async (req, res) => {
             yearHigh: stockData.summaryDetail.fiftyTwoWeekHigh,
             yearLow: stockData.summaryDetail.fiftyTwoWeekLow,
         }
-
+        // redner the single stock page with the information from above
         return res.render('single-stock', {stock});
     })
     .catch(err => {
+        // if theres an error fetching the info from yahoofinanace then render an error screen
         return res.status(400).json({ message: 'No stock with that symbol!' });
     });
 });
