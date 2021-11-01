@@ -42,8 +42,8 @@ router.get('/:symbol', (req, res) => {
     });
 });
 
-// create a new holding
-router.post('/', (req, res) => {
+// creating/incrementing/decrementing a users holding
+router.post('/', async (req, res) => {
     // this will create a new holding if the user doesnt own that stock already
     // Holding.create({
     //     shares: req.body.shares,
@@ -57,17 +57,25 @@ router.post('/', (req, res) => {
 
     const transactionType = req.body.type;
 
-    if(transactionType === "buy"){
-        Holding.increment({
-            shares: req.body.quantity
-        }, 
-        {
-            where: {
-                symbol: req.body.symbol,
-                user_id: req.session.user_id
-            }
-        })
+    let cash = await getUserCash(req.session.user_id);
+    // this cost is going to be a parameter passed from the trade.js file, its hardcoded for testing
+    let cost = 500;
+
+    // check if the users cash stack is enough to purchase the stock
+    if(cash >= cost){
+        if(transactionType === "buy"){
+            Holding.increment({
+                shares: req.body.quantity
+            }, 
+            {
+                where: {
+                    symbol: req.body.symbol,
+                    user_id: req.session.user_id
+                }
+            })
+        }
     }
+
 
     if(transactionType === "sell"){
         Holding.increment({
@@ -83,5 +91,10 @@ router.post('/', (req, res) => {
 
     return res.json();
 })
+
+async function getUserCash(userId){
+    const user = await User.findOne({where: {id: userId}});
+    return user.get("cash");
+}
 
 module.exports = router;
