@@ -48,6 +48,14 @@ Transaction.init(
             }
         },
 
+        holding_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'holding',
+                key: 'id'
+            }
+        },
+
         user_id: {
             type: DataTypes.INTEGER,
             references: {

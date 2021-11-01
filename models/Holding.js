@@ -12,20 +12,26 @@ Holding.init(
             autoIncrement: true
         },
 
+        shares: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+
         symbol: {
             type: DataTypes.STRING,
             allowNull: false
         },
 
-        transactions: {
-            references: {
-                model: 'transaction',
-                key: 'id'
-            }
-        },
+        // transaction_id: {
+        //     type: DataTypes.UUID,
+        //     references: {
+        //         model: 'transaction',
+        //         key: 'id'
+        //     }
+        // },
 
         user_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             references: {
                 model: 'user',
                 key: 'id'

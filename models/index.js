@@ -1,7 +1,6 @@
 const User = require('./User')
 const Holding = require('./Holding');
 const Transaction = require('./Transaction');
-const Stock = require('./Stock');
 
 // associating the holding table to the user table thru the user id foreign key
 User.hasMany(Holding, {
@@ -12,9 +11,14 @@ Holding.belongsTo(User);
 // associating the transaction table to the user table thru the user id foreign key
 User.hasMany(Transaction, {
     foreignKey: 'user_id'
-});
+}); 
 Transaction.belongsTo(User);
 
-Holding.hasMany(Transaction, {as: 'transactions'});
+Transaction.belongsTo(Holding);
+Holding.hasMany(Transaction, {
+    foreignKey: 'holding_id',
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+});
 
-module.exports = {User, Holding, Transaction, Stock};
+module.exports = {User, Holding, Transaction};

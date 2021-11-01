@@ -8,14 +8,14 @@ router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         return res.redirect('/dashboard');
     }
-    return res.render('login');
+    return res.render('login', {login: true});
 });
 
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         return res.redirect('/dashboard');
     }
-    return res.render('signup');
+    return res.render('signup', {signup: true});
 });
 
 module.exports = router;
