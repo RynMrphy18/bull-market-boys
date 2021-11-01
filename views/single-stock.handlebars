@@ -7,14 +7,16 @@
     <p>52 Week Low: {{stock.yearLow}}</p>
 </ul>
 
-<form action="" class="d-flex justify-content-center mt-6">
+<form class="trade-form d-flex justify-content-center mt-6">
     <div class="field mb-3">
-        <select id="framework" class="p-1">
+        <select id="type" class="p-1">
             <option value="buy">Buy</option>
+            {{!-- if current user holdings doesnt contain the stock that has been searched then dont show the sell option --}}
             <option value="sell">Sell</option>
         </select>
 
         <input type="number" id="quantity" class="" placeholder="Enter quantity here"/>
+        <span>shares</span>
 
         <button type="submit" class="btn btn-primary">Confirm</button>
     </div>
