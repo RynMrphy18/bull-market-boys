@@ -1,5 +1,9 @@
 <ul>
-    {{#each holdings}}
-    {{> stocks/stock-block}}
-    {{/each}}
+    <p>Symbol: {{stock.symbol}}</p>
+    <p>Shares: {{stock.price}}</p>
+    <p>Day High: {{stock.high}}</p>
+    <p>Day Low: {{stock.low}}</p>
+    <p>52 Week High: {{stock.yearHigh}}</p>
+    <p>52 Week Low: {{stock.yearLow}}</p>
 </ul>
+
