@@ -80,6 +80,8 @@ router.post('/', (req, res) => {
             }
         })
     }
+
+    return res.json();
 })
 
 module.exports = router;

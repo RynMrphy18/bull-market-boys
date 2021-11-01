@@ -14,7 +14,7 @@ async function tradeFormHandler(event) {
 
     // making sure that the quantity is greater than 0
     if(type && quantity > 0){
-        const order = await fetch('/api/holdings/', {
+        const response = await fetch('/api/holdings/', {
             method: 'post',
             body: JSON.stringify({
                 symbol,
@@ -23,6 +23,12 @@ async function tradeFormHandler(event) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
+
+        if (response.ok) {
+            document.location.replace('/dashboard/');
+        } else {
+            alert(response.statusText);
+        }
     }
 }
 
