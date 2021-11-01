@@ -26,7 +26,7 @@ router.get('/:symbol', withAuth, async (req, res) => {
             yearLow: stockData.summaryDetail.fiftyTwoWeekLow,
         }
         // redner the single stock page with the information from above
-        return res.render('single-stock', {stock});
+        return res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
     })
     .catch(err => {
         // if theres an error fetching the info from yahoofinanace then render an error screen
