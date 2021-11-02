@@ -71,7 +71,7 @@ router.post('/', async (req, res) => {
                 return res.status(200).json();
             }else{
                 console.log('user doesnt have the stock, creating a new holding');
-                await Holding.create({where: {symbol: symbol, user_id: userId, shares: quantity}});
+                await Holding.create({shares: quantity, symbol: symbol, user_id: userId});
                 return res.status(200).json();
             }
         }else{

@@ -1,14 +1,15 @@
 // this is the front end javascript file to handle the buying and selling of stocks
 const tradeForm = document.querySelector('.trade-form');
+// grab the symbol and the price upon page
+// this stops the users from inspecting element and changing the symbol and price to buy cheap stocks
+const symbol = document.querySelector('#symbol').textContent.trim();
+const price = document.querySelector('#price').textContent.trim();
 
 async function tradeFormHandler(event) {
     event.preventDefault();
 
     const type = document.querySelector('#type').value.trim();
     const quantity = document.querySelector('#quantity').value.trim();
-    const symbol = document.querySelector('#symbol').textContent.trim();
-    const price = document.querySelector('#price').textContent.trim();
-
     const cost = parseInt(quantity) * parseFloat(price);
 
     // making sure that the quantity is greater than 0
