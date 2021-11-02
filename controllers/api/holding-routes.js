@@ -71,7 +71,7 @@ router.post('/', async (req, res) => {
                         user_id: userId
                     }
                 });
-                return res.status(200);
+                return res.status(200).json();
             }else{
                 console.log('user doesnt have the stock');
                 await Holding.create({
@@ -79,7 +79,7 @@ router.post('/', async (req, res) => {
                     symbol: symbol,
                     user_id: userId
                 });
-                return res.status(200);
+                return res.status(200).json();
             }
         }else{
             // let the user know they don't have the required funds
@@ -99,8 +99,13 @@ router.post('/', async (req, res) => {
                 user_id: userId
             }
         });
-        return res.status(200);
+        return res.status(200).json();
     }
+
+    // return res.status(200).json();
+
+    // after the user sells their stock check if the holding shares amount is == 0
+    // if shares amount == 0 then delete that holding from the table
 });
 
 async function getUserCash(userId){
@@ -116,7 +121,6 @@ async function userHasStock(symbol, userId){
         }
     })
     .then(count => {
-        console.log(count);
         if(count != 0){
             return true;
         }
