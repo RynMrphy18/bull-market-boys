@@ -1,3 +1,17 @@
-{{#each transactions as |transaction|}}
-    {{> transactions-block transaction.dataValues}}
-{{/each}}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Price</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Type</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each transactions as |transaction|}}
+        {{> transactions-block transaction.dataValues}}
+        {{/each}}
+    </tbody>
+</table>
