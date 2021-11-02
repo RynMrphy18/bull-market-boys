@@ -13,7 +13,7 @@ async function tradeFormHandler(event) {
 
     // making sure that the quantity is greater than 0
     if(type && quantity > 0){
-        const response = await fetch('/api/holdings/', {
+        fetch('/api/holdings/', {
             method: 'post',
             body: JSON.stringify({
                 symbol,
@@ -22,15 +22,13 @@ async function tradeFormHandler(event) {
                 cost
             }),
             headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            if(response.ok){
+                return document.location.replace('/dashboard/');
+            }
+            return alert(response.statusText);
         });
-
-        if (response.ok) {
-            document.location.replace('/dashboard/');
-        } else {
-            // fix this, not displaying the proper error message
-            // case: not enough money, all cases
-            alert(response.statusText);
-        }
     }
 }
 

@@ -47,6 +47,4 @@ Holding.init(
     }
 )
 
-Holding.sync({alter: true});
-
 module.exports = Holding;

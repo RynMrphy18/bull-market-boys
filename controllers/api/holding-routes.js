@@ -83,7 +83,9 @@ router.post('/', async (req, res) => {
             }
         }else{
             // let the user know they don't have the required funds
-            return res.status(404).json({message: 'User does not have the funds!'});
+            // return res.status(400).send('User does not have the funds!');
+            res.statusMessage = 'User does not have the funds!';
+            return res.status(500).json();
         }
     }
 
