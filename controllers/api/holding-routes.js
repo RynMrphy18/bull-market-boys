@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const {User, Holding, Transaction} = require('../../models');
+const {updateUserCash, getUserCash}  = require('../../utils/cash');
+const userHasStock = require('../../utils/stock');
 
 router.get('/', (req, res) => {
     Holding.findAll({
@@ -59,6 +61,7 @@ router.post('/', async (req, res) => {
             console.log('users has the funds');
             // check if the user has a holding of that stock, if so increment otherwise, create a new holding.
             // deduct cost from the users cash stack
+            updateUserCash(-cost, userId);
             if(await userHasStock(symbol, userId)){
                 console.log('user has the stock');
                 Holding.increment({
@@ -105,28 +108,23 @@ router.post('/', async (req, res) => {
 
     // return res.status(200).json();
 
-    // after the user sells their stock check if the holding shares amount is == 0
-    // if shares amount == 0 then delete that holding from the table
+    // after the user sells their stock check holding shares amount
+    // if holding shares amount == 0, then delete that holding from the table
 });
 
-async function getUserCash(userId){
-    const user = await User.findOne({where: {id: userId}});
-    return user.get("cash");
-}
-
-async function userHasStock(symbol, userId){
-    return Holding.count({
-        where: {
-            symbol: symbol,
-            user_id: userId
-        }
-    })
-    .then(count => {
-        if(count != 0){
-            return true;
-        }
-        return false;
-    });
-}
+// async function userHasStock(symbol, userId){
+//     return Holding.count({
+//         where: {
+//             symbol: symbol,
+//             user_id: userId
+//         }
+//     })
+//     .then(count => {
+//         if(count != 0){
+//             return true;
+//         }
+//         return false;
+//     });
+// }
 
 module.exports = router;

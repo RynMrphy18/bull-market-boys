@@ -26,11 +26,11 @@ router.get('/:symbol', withAuth, async (req, res) => {
             yearLow: stockData.summaryDetail.fiftyTwoWeekLow,
         }
         // render the single stock page with the information from above
-        res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
-        return res.status(200).json();
+        return res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
     })
     .catch(err => {
         // if theres an error fetching the info from yahoofinanace then render an error screen
+        // need to adjust this to work properly
         res.statusMessage = 'No stock with that symbol!';
         return res.status(400).json();
     });
