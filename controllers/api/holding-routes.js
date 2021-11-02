@@ -90,6 +90,8 @@ router.post('/', async (req, res) => {
             let holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
             // decrement the shares of that holding
             await holding.increment({shares: -quantity});
+            // increment the user cash
+            updateUserCash(cost, userId);
             // update holding variable after decrementing
             holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
             // if the number of shares are == 0 then delete the holding
