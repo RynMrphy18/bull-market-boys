@@ -20,6 +20,8 @@ const sess = {
     })
 };
 
+const helpers = require('./utils/helpers');
+
 app.use(session(sess));
 
 app.use(express.json());
@@ -27,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: false}));
 app.use(routes);
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ helpers, defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 sequelize.sync({force: false})
