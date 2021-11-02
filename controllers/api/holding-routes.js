@@ -66,10 +66,14 @@ router.post('/', async (req, res) => {
                 let holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
                 // increment the shares of that holding
                 await holding.increment({shares: quantity});
+                // create a transaction after updating the holding
+                Transaction.create({symbol: symbol, price: cost, shares: quantity, type: transactionType, user_id: userId, holding_id: holding.id});
                 return res.status(200).json();
             }else{
                 console.log('user doesnt have the stock, creating a new holding');
-                await Holding.create({shares: quantity, symbol: symbol, user_id: userId});
+                let holding = await Holding.create({shares: quantity, symbol: symbol, user_id: userId});
+                // create a transaction after creating a holding
+                Transaction.create({symbol: symbol, price: cost, shares: quantity, type: transactionType, user_id: userId, holding_id: holding.id});
                 return res.status(200).json();
             }
         }else{
@@ -90,11 +94,14 @@ router.post('/', async (req, res) => {
             await holding.increment({shares: -quantity});
             // increment the user cash
             updateUserCash(cost, userId);
+            // create a transaction after updating holding
+            Transaction.create({symbol: symbol, price: cost, shares: quantity, type: transactionType, user_id: userId, holding_id: holding.id});
             // update holding variable after decrementing
             holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
             // if the number of shares are == 0 then delete the holding
             if(holding.shares == 0){
                 console.log('shares = 0, destroying this holding');
+                // BUG: destroying the holdings table if the shares == 0 will also delete the child transactions table
                 await holding.destroy();
             }
             return res.status(200).json();
