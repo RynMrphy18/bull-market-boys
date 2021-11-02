@@ -29,9 +29,7 @@
             <h3 class="text-center mb-4">Your Current Holdings:</h3>
             <div class="d-flex flex-row justify-content-evenly">
                 {{#each holdings as |holding|}}
-                    <div class="text-center p-3 m-2 bg-warning rounded-3">
-                        {{> holdings holding.dataValues}}
-                    </div>
+                    {{> holdings holding.dataValues}}
                 {{/each}}
             </div>
             {{else}}
