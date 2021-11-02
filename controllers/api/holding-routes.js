@@ -99,11 +99,12 @@ router.post('/', async (req, res) => {
             // update holding variable after decrementing
             holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
             // if the number of shares are == 0 then delete the holding
-            if(holding.shares == 0){
-                console.log('shares = 0, destroying this holding');
+            // if(holding.shares == 0){
+                // console.log('shares = 0, destroying this holding');
                 // BUG: destroying the holdings table if the shares == 0 will also delete the child transactions table
-                await holding.destroy();
-            }
+                // i solved this in the dashboard route by filtering out holdings where shares = 0
+                // await holding.destroy();
+            // }
             return res.status(200).json();
         }else{
             // let the user know they don't have enough shares to sell the amount they've entered
