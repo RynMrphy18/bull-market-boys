@@ -47,50 +47,54 @@ router.post('/', async (req, res) => {
     // this will create a new holding if the user doesnt own that stock already
 
     const transactionType = req.body.type;
+    const symbol = req.body.symbol;
+    const userId = req.session.user_id;
+    const quantity = req.body.quantity;
 
-    let cash = await getUserCash(req.session.user_id);
+    let cash = await getUserCash(userId);
     // this cost is going to be a parameter passed from the trade.js file, its hardcoded for testing
     let cost = 500;
 
     // check if the users cash stack is enough to purchase the stock
     if(transactionType === "buy"){
         if(cash >= cost){
-            console.log('users has the funds')
+            console.log('users has the funds');
             // check if the user has a holding of that stock, if so increment otherwise, create a new holding.
-            if(await userHasStock(req.body.symbol, req.session.user_id)){
-                console.log('user has the stock')
+            if(await userHasStock(symbol, userId)){
+                console.log('user has the stock');
                 Holding.increment({
-                    shares: req.body.quantity
+                    shares: quantity
                 }, 
                 {
                     where: {
-                        symbol: req.body.symbol,
-                        user_id: req.session.user_id
+                        symbol: symbol,
+                        user_id: userId
                     }
                 });
             }else{
-                console.log('user doesnt have the stock')
+                console.log('user doesnt have the stock');
                 await Holding.create({
-                    shares: req.body.quantity,
-                    symbol: req.body.symbol,
-                    user_id: req.session.user_id
+                    shares: quantity,
+                    symbol: symbol,
+                    user_id: userId
                 });
             }
         }else{
             // let the user know they don't have the required funds
-            console.log('user doesnt have the funds')
+            console.log('user doesnt have the funds');
         }
     }
 
 
     if(transactionType === "sell"){
         Holding.increment({
-            shares: -req.body.quantity
-        }, 
+            // since were incrementing we have to add (negative quantity)
+            shares: -quantity,
+        },
         {
             where: {
-                symbol: req.body.symbol,
-                user_id: req.session.user_id
+                symbol: symbol,
+                user_id: userId
             }
         })
     }
@@ -104,16 +108,15 @@ async function getUserCash(userId){
 }
 
 async function userHasStock(symbol, userId){
-    Holding.findOne({
+    return Holding.count({
         where: {
             symbol: symbol,
             user_id: userId
         }
     })
-    .then(response => {
-        // return a boolean if that user has a holding that matches the symbol passed in
-        console.log("this is the response: !!!!!!!" + response);
-        if(!response){
+    .then(count => {
+        console.log(count);
+        if(count != 0){
             return true;
         }
         return false;

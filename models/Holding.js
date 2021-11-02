@@ -43,8 +43,10 @@ Holding.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'holding'
+        modelName: 'holding',
     }
 )
+
+Holding.sync({alter: true});
 
 module.exports = Holding;
