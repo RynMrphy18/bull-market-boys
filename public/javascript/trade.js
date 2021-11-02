@@ -8,7 +8,7 @@ async function tradeFormHandler(event) {
     const quantity = document.querySelector('#quantity').value.trim();
 
     // symbol is hardcoded in right now but needs to be variable!
-    const symbol = 'APPL';
+    const symbol = 'AAPL';
 
     // const cost = quantity * price;
 

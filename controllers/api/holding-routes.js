@@ -45,15 +45,6 @@ router.get('/:symbol', (req, res) => {
 // creating/incrementing/decrementing a users holding
 router.post('/', async (req, res) => {
     // this will create a new holding if the user doesnt own that stock already
-    // Holding.create({
-    //     shares: req.body.shares,
-    //     symbol: req.body.symbol,
-    //     user_id: req.body.user_id
-    //     // user_id: req.session.user_id
-    // })
-    // .then(holdings => {
-    //     return res.json(holdings);
-    // });
 
     const transactionType = req.body.type;
 
@@ -62,17 +53,32 @@ router.post('/', async (req, res) => {
     let cost = 500;
 
     // check if the users cash stack is enough to purchase the stock
-    if(cash >= cost){
-        if(transactionType === "buy"){
-            Holding.increment({
-                shares: req.body.quantity
-            }, 
-            {
-                where: {
+    if(transactionType === "buy"){
+        if(cash >= cost){
+            console.log('users has the funds')
+            // check if the user has a holding of that stock, if so increment otherwise, create a new holding.
+            if(await userHasStock(req.body.symbol, req.session.user_id)){
+                console.log('user has the stock')
+                Holding.increment({
+                    shares: req.body.quantity
+                }, 
+                {
+                    where: {
+                        symbol: req.body.symbol,
+                        user_id: req.session.user_id
+                    }
+                });
+            }else{
+                console.log('user doesnt have the stock')
+                await Holding.create({
+                    shares: req.body.quantity,
                     symbol: req.body.symbol,
                     user_id: req.session.user_id
-                }
-            })
+                });
+            }
+        }else{
+            // let the user know they don't have the required funds
+            console.log('user doesnt have the funds')
         }
     }
 
@@ -95,6 +101,23 @@ router.post('/', async (req, res) => {
 async function getUserCash(userId){
     const user = await User.findOne({where: {id: userId}});
     return user.get("cash");
+}
+
+async function userHasStock(symbol, userId){
+    Holding.find({
+        where: {
+            symbol: symbol,
+            user_id: userId
+        }
+    })
+    .then(response => {
+        // return a boolean if that user has a holding that matches the symbol passed in
+        console.log("this is the response: !!!!!!!" + response);
+        if(!response){
+            return false;
+        }
+        return true;
+    });
 }
 
 module.exports = router;
