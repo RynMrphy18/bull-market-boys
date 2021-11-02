@@ -63,24 +63,15 @@ router.post('/', async (req, res) => {
             // deduct cost from the users cash stack
             updateUserCash(-cost, userId);
             if(await userHasStock(symbol, userId)){
-                console.log('user has the stock');
-                Holding.increment({
-                    shares: quantity
-                }, 
-                {
-                    where: {
-                        symbol: symbol,
-                        user_id: userId
-                    }
-                });
+                console.log('user has the stock, updating existing holding');
+                // find the holding thats being updated
+                let holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
+                // increment the shares of that holding
+                await holding.increment({shares: quantity});
                 return res.status(200).json();
             }else{
-                console.log('user doesnt have the stock');
-                await Holding.create({
-                    shares: quantity,
-                    symbol: symbol,
-                    user_id: userId
-                });
+                console.log('user doesnt have the stock, creating a new holding');
+                await Holding.create({where: {symbol: symbol, user_id: userId, shares: quantity}});
                 return res.status(200).json();
             }
         }else{
@@ -94,19 +85,18 @@ router.post('/', async (req, res) => {
     if(transactionType === "sell"){
         // check if the user has the stock theyre trying to sell & if the quantity they have is greater than or equal to the amount trying to be sold
         if(await userHasStock(symbol, userId) && await userStockQuantity(symbol, userId) >= quantity){
-            console.log('user has enough shares to sell this armount');
-            // decrement the amount of shares that the user has by the amount specified by the user
-            Holding.increment({
-                // since were incrementing we have to add (negative quantity)
-                shares: -quantity,
-            },
-            {
-                where: {
-                    symbol: symbol,
-                    user_id: userId
-                }
-            });
-
+            console.log('user has enough shares to sell this amount');
+            // find the holding thats being updated
+            let holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
+            // decrement the shares of that holding
+            await holding.increment({shares: -quantity});
+            // update holding variable after decrementing
+            holding = await Holding.findOne({where: {symbol: symbol, user_id: userId}});
+            // if the number of shares are == 0 then delete the holding
+            if(holding.shares == 0){
+                console.log('shares = 0, destroying this holding');
+                await holding.destroy();
+            }
             return res.status(200).json();
         }else{
             // let the user know they don't have enough shares to sell the amount they've entered
@@ -114,8 +104,6 @@ router.post('/', async (req, res) => {
             return res.status(500).json();
         }
     }
-    // after the user sells their stock check holding shares amount
-    // if holding shares amount == 0, then delete that holding from the table
 });
 
 module.exports = router;
