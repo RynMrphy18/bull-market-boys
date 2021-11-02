@@ -5,10 +5,23 @@ async function searchFormHandler(event) {
 
     const search = document.querySelector('#search-field').value.trim();
 
-    if(search) {
+    validate(search);
+
+    if(validate(search)) {
         document.location.replace(`/search/${search}`);
     }else{
-        alert('Please enter a stock symbol before searching!');
+        alert('Please enter a valid stock symbol!');
+    }
+
+    function validate(search){
+        // loop through the characters in the string
+        for(let i=0; i<search.length; i++){
+            let char = search.charAt(i);
+            // test is character is within a-z
+            if(/^[a-zA-Z]+$/.test(char))
+                return false;
+            }
+        return true;
     }
 }
 
