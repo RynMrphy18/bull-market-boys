@@ -6,11 +6,10 @@ async function tradeFormHandler(event) {
 
     const type = document.querySelector('#type').value.trim();
     const quantity = document.querySelector('#quantity').value.trim();
+    const symbol = document.querySelector('#symbol').textContent.trim();
+    const price = document.querySelector('#price').textContent.trim();
 
-    // symbol is hardcoded in right now but needs to be variable!
-    const symbol = 'AAPL';
-
-    // const cost = quantity * price;
+    const cost = parseInt(quantity) * parseFloat(price);
 
     // making sure that the quantity is greater than 0
     if(type && quantity > 0){
@@ -19,7 +18,8 @@ async function tradeFormHandler(event) {
             body: JSON.stringify({
                 symbol,
                 quantity,
-                type
+                type,
+                cost
             }),
             headers: { 'Content-Type': 'application/json' }
         });
@@ -27,6 +27,8 @@ async function tradeFormHandler(event) {
         if (response.ok) {
             document.location.replace('/dashboard/');
         } else {
+            // fix this, not displaying the proper error message
+            // case: not enough money, all cases
             alert(response.statusText);
         }
     }

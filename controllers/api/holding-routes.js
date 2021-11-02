@@ -50,16 +50,16 @@ router.post('/', async (req, res) => {
     const symbol = req.body.symbol;
     const userId = req.session.user_id;
     const quantity = req.body.quantity;
+    const cost = req.body.cost;
 
     let cash = await getUserCash(userId);
-    // this cost is going to be a parameter passed from the trade.js file, its hardcoded for testing
-    let cost = 500;
 
     // check if the users cash stack is enough to purchase the stock
     if(transactionType === "buy"){
         if(cash >= cost){
             console.log('users has the funds');
             // check if the user has a holding of that stock, if so increment otherwise, create a new holding.
+            // deduct cost from the users cash stack
             if(await userHasStock(symbol, userId)){
                 console.log('user has the stock');
                 Holding.increment({
@@ -71,6 +71,7 @@ router.post('/', async (req, res) => {
                         user_id: userId
                     }
                 });
+                return res.status(200);
             }else{
                 console.log('user doesnt have the stock');
                 await Holding.create({
@@ -78,14 +79,15 @@ router.post('/', async (req, res) => {
                     symbol: symbol,
                     user_id: userId
                 });
+                return res.status(200);
             }
         }else{
             // let the user know they don't have the required funds
-            console.log('user doesnt have the funds');
+            return res.status(404).json({message: 'User does not have the funds!'});
         }
     }
 
-
+    // check if the user has the stock and if they have the amount they want to sell
     if(transactionType === "sell"){
         Holding.increment({
             // since were incrementing we have to add (negative quantity)
@@ -96,11 +98,10 @@ router.post('/', async (req, res) => {
                 symbol: symbol,
                 user_id: userId
             }
-        })
+        });
+        return res.status(200);
     }
-
-    return res.json();
-})
+});
 
 async function getUserCash(userId){
     const user = await User.findOne({where: {id: userId}});
