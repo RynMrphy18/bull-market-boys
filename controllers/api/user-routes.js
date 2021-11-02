@@ -47,15 +47,15 @@ router.post('/login', (req, res) => {
     })
     .then(response => {
         if (!response) {
-            return res.status(400).json({ message: 'No user with that username!' });
+            res.statusMessage = 'Failed to login!';
+            return res.status(400).json();
         }
-
-        console.log(response);
 
         const validPassword = response.checkPassword(req.body.password);
 
         if (!validPassword) {
-            return res.status(400).json({ message: 'Incorrect password!' });
+            res.statusMessage = 'Incorrect password!'
+            return res.status(400).json();
         }
 
         req.session.save(() => {
