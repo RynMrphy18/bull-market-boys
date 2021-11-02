@@ -104,7 +104,7 @@ async function getUserCash(userId){
 }
 
 async function userHasStock(symbol, userId){
-    Holding.find({
+    Holding.findOne({
         where: {
             symbol: symbol,
             user_id: userId
@@ -114,9 +114,9 @@ async function userHasStock(symbol, userId){
         // return a boolean if that user has a holding that matches the symbol passed in
         console.log("this is the response: !!!!!!!" + response);
         if(!response){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     });
 }
 
