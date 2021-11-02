@@ -18,9 +18,10 @@ async function searchFormHandler(event) {
         for(let i=0; i<search.length; i++){
             let char = search.charAt(i);
             // test is character is within a-z
-            if(/^[a-zA-Z]+$/.test(char))
+            if(!/^[a-zA-Z]+$/.test(char)){
                 return false;
             }
+        }
         return true;
     }
 }
