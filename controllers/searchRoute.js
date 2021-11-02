@@ -25,12 +25,14 @@ router.get('/:symbol', withAuth, async (req, res) => {
             yearHigh: stockData.summaryDetail.fiftyTwoWeekHigh,
             yearLow: stockData.summaryDetail.fiftyTwoWeekLow,
         }
-        // redner the single stock page with the information from above
-        return res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
+        // render the single stock page with the information from above
+        res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
+        return res.status(200).json();
     })
     .catch(err => {
         // if theres an error fetching the info from yahoofinanace then render an error screen
-        return res.status(400).json({ message: 'No stock with that symbol!' });
+        res.statusMessage = 'No stock with that symbol!';
+        return res.status(400).json();
     });
 });
 

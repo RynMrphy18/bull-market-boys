@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
     })
         .then(response => res.json(response))
         .catch(err => {
-            console.log(err);
             return res.status(500).json(err);
         });
 });
@@ -34,7 +33,6 @@ router.post('/', (req, res) => {
         });
     })
     .catch(err => {
-        console.log(err);
         return res.status(500).json(err);
     });
 });

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         ]
     })
     .then(holdings => res.json(holdings))
-    .catch(err => console.log(err));
+    // .catch(err => console.log(err));
 });
 
 router.get('/:symbol', (req, res) => {
@@ -37,7 +37,6 @@ router.get('/:symbol', (req, res) => {
         })
     })
     .catch(err => {
-        console.log(err);
         return res.status(500).json(err);
     });
 });
