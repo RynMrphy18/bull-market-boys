@@ -9,10 +9,11 @@ User.hasMany(Holding, {
 Holding.belongsTo(User);
 
 // associating the transaction table to the user table thru the user id foreign key
-User.hasMany(Transaction, {
-    foreignKey: 'user_id'
-}); 
-Transaction.belongsTo(User);
+// i dont know if we need this association -- joe
+// User.hasMany(Transaction, {
+//     foreignKey: 'user_id'
+// }); 
+// Transaction.belongsTo(User);
 
 Transaction.belongsTo(Holding);
 Holding.hasMany(Transaction, {

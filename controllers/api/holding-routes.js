@@ -8,11 +8,9 @@ router.get('/', (req, res) => {
         where: {
             user_id: req.session.user_id
         },
-        include: [
-            {
+        include: [{
                 model: Transaction
-            }
-        ]
+        }],
     })
     .then(holdings => res.json(holdings))
     // .catch(err => console.log(err));
