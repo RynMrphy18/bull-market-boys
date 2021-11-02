@@ -5,5 +5,11 @@ module.exports = {
   },
   format_price: (price) => {
     return '$' + (price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  },
+  if_buy: (type) => {
+    if(type == 'buy'){
+      return 'table-success';
+    }
+    return 'table-danger';
   }
 };
