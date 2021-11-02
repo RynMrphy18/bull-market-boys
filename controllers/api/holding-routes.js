@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {User, Holding, Transaction} = require('../../models');
 const {updateUserCash, getUserCash}  = require('../../utils/cash');
-const userHasStock = require('../../utils/stock');
+const {userHasStock, userStockQuantity} = require('../../utils/stock');
 
 router.get('/', (req, res) => {
     Holding.findAll({
@@ -43,7 +43,7 @@ router.get('/:symbol', (req, res) => {
     });
 });
 
-// creating/incrementing/decrementing a users holding
+// creating/incrementing/decrementing/deleting a users holding
 router.post('/', async (req, res) => {
     // this will create a new holding if the user doesnt own that stock already
 
@@ -93,38 +93,27 @@ router.post('/', async (req, res) => {
 
     // check if the user has the stock and if they have the amount they want to sell
     if(transactionType === "sell"){
-        Holding.increment({
-            // since were incrementing we have to add (negative quantity)
-            shares: -quantity,
-        },
-        {
-            where: {
-                symbol: symbol,
-                user_id: userId
-            }
-        });
-        return res.status(200).json();
+        if(await userHasStock(symbol, userId) && await userStockQuantity(symbol, userId) >= quantity){
+            console.log('user has enough shares to sell this armount');
+            Holding.increment({
+                // since were incrementing we have to add (negative quantity)
+                shares: -quantity,
+            },
+            {
+                where: {
+                    symbol: symbol,
+                    user_id: userId
+                }
+            });
+
+            return res.status(200).json();
+        }else{
+            res.statusMessage = 'User does not have enough shares to sell!';
+            return res.status(500).json();
+        }
     }
-
-    // return res.status(200).json();
-
     // after the user sells their stock check holding shares amount
     // if holding shares amount == 0, then delete that holding from the table
 });
-
-// async function userHasStock(symbol, userId){
-//     return Holding.count({
-//         where: {
-//             symbol: symbol,
-//             user_id: userId
-//         }
-//     })
-//     .then(count => {
-//         if(count != 0){
-//             return true;
-//         }
-//         return false;
-//     });
-// }
 
 module.exports = router;

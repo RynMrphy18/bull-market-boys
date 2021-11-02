@@ -15,4 +15,19 @@ async function userHasStock(symbol, userId){
     });
 }
 
-module.exports = userHasStock;
+async function userStockQuantity(symbol, userId){
+    return Holding.findOne({
+        where: {
+            symbol: symbol,
+            user_id: userId
+        }
+    })
+    .then(response => {
+        if(!response){
+            return 0;
+        }
+        return response.get('shares');
+    });
+}
+
+module.exports = {userHasStock, userStockQuantity};
