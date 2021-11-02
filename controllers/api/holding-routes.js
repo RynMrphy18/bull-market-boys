@@ -85,7 +85,6 @@ router.post('/', async (req, res) => {
             }
         }else{
             // let the user know they don't have the required funds
-            // return res.status(400).send('User does not have the funds!');
             res.statusMessage = 'User does not have the funds!';
             return res.status(500).json();
         }
@@ -93,8 +92,10 @@ router.post('/', async (req, res) => {
 
     // check if the user has the stock and if they have the amount they want to sell
     if(transactionType === "sell"){
+        // check if the user has the stock theyre trying to sell & if the quantity they have is greater than or equal to the amount trying to be sold
         if(await userHasStock(symbol, userId) && await userStockQuantity(symbol, userId) >= quantity){
             console.log('user has enough shares to sell this armount');
+            // decrement the amount of shares that the user has by the amount specified by the user
             Holding.increment({
                 // since were incrementing we have to add (negative quantity)
                 shares: -quantity,
@@ -108,6 +109,7 @@ router.post('/', async (req, res) => {
 
             return res.status(200).json();
         }else{
+            // let the user know they don't have enough shares to sell the amount they've entered
             res.statusMessage = 'User does not have enough shares to sell!';
             return res.status(500).json();
         }
