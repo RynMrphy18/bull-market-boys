@@ -13,8 +13,14 @@ router.get('/:symbol', (req, res) => {
     Transaction.findAll({where: {symbol: symbol, user_id: req.session.user_id}})
     .then(transactions => {
         if(transactions.length > 0){
-            let stockData = getStock(symbol);
-            return res.render('transactions', {transactions, stockData, loggedIn: req.session.loggedIn});
+            // Using a try statement...
+            try {
+                let stockData = getStock(symbol);
+                return res.render('transactions', {transactions, stockData, loggedIn: req.session.loggedIn});
+            } catch (error) {
+                // Incomplete
+            } 
+            
         }
         return res.status(404).json('No transactions found!');
     });
