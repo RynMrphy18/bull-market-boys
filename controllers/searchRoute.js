@@ -14,14 +14,12 @@ router.post('/', withAuth, async (req, res) => {
             // if stock data is valid then render the stock page with the data
             return res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
         }catch(error){
-            // if stock data isn't valid then it will throw and catch an error
             // return the user to the dashboard and display the error
             return res.redirect('/dashboard');
             // return res.render('dashboard', {error: error, loggedIn: req.session.loggedIn});
-            // return res.status(400).json('No stock with that symbol!');
         }
     }else{
-        // if the stock isn't valid then redirect the user to the dashboard
+        // return the user to the dashboard if symbol invalid
         return res.redirect('/dashboard');
     }
 });
