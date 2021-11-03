@@ -4,7 +4,6 @@ const withAuth = require('../utils/auth');
 const getStock = require('../utils/getStock');
 const validate = require('../utils/validate');
 
-// query yahoo finance for stock data
 router.post('/', withAuth, async (req, res) => {
     const symbol = req.body.symbol;
     // check if the symbol is valid, ONLY LETTERS
@@ -16,9 +15,9 @@ router.post('/', withAuth, async (req, res) => {
             return res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
         }catch(error){
             // if stock data isn't valid then it will throw and catch an error
-            console.log(error);
             // return the user to the dashboard and display the error
-            return res.render('dashboard', {error: error, loggedIn: req.session.loggedIn});
+            return res.redirect('/dashboard');
+            // return res.render('dashboard', {error: error, loggedIn: req.session.loggedIn});
             // return res.status(400).json('No stock with that symbol!');
         }
     }else{

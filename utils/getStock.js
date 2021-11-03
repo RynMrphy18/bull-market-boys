@@ -16,7 +16,6 @@ const getStock = async (symbol) => {
             yearHigh: stockData.summaryDetail.fiftyTwoWeekHigh,
             yearLow: stockData.summaryDetail.fiftyTwoWeekLow,
         }
-        console.log(stockInfo)
         return stockInfo;
     });
 }
