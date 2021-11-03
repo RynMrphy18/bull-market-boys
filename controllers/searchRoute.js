@@ -1,39 +1,32 @@
 const router = require('express').Router();
 const yahooFinance = require('yahoo-finance');
 const withAuth = require('../utils/auth');
+const getStock = require('../utils/getStock');
+const validate = require('../utils/validate');
 
-// query yahoo finance for stock data
-router.get('/:symbol', withAuth, async (req, res) => {
+// refreshing on the /search page will bring the user back to the dashboard instead of throwing wrong routes!
+router.get('/', (req, res) => {
+    res.redirect('/dashboard');
+})
 
-    const symbol = req.params.symbol.toUpperCase();
-
-    yahooFinance.quote({
-        symbol: symbol,
-        modules: [ 'price', 'summaryDetail' ]
-    })
-    .then(response => {
-        // create an object with important info from the stock data
-        let stockData = response;
-
-        let stock = {
-            symbol: symbol,
-            price: stockData.price.regularMarketPrice.toFixed(2),
-            open: stockData.summaryDetail.open,
-            // close: stockData.summaryDetail.close,
-            high: stockData.summaryDetail.dayHigh,
-            low: stockData.summaryDetail.dayLow,
-            yearHigh: stockData.summaryDetail.fiftyTwoWeekHigh,
-            yearLow: stockData.summaryDetail.fiftyTwoWeekLow,
+router.post('/', withAuth, async (req, res) => {
+    const symbol = req.body.symbol;
+    // check if the symbol is valid, ONLY LETTERS
+    if(await validate(symbol)){
+        // try to fetch the stock data
+        try{
+            let stock = await getStock(symbol);
+            // if stock data is valid then render the stock page with the data
+            return res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
+        }catch(error){
+            // return the user to the dashboard and display the error
+            return res.redirect('/dashboard');
+            // return res.render('dashboard', {error: error, loggedIn: req.session.loggedIn});
         }
-        // render the single stock page with the information from above
-        return res.render('single-stock', {stock, loggedIn: req.session.loggedIn});
-    })
-    .catch(err => {
-        // if theres an error fetching the info from yahoofinanace then render an error screen
-        // need to adjust this to work properly
-        res.statusMessage = 'No stock with that symbol!';
-        return res.status(400).json();
-    });
+    }else{
+        // return the user to the dashboard if symbol invalid
+        return res.redirect('/dashboard');
+    }
 });
 
 module.exports = router;

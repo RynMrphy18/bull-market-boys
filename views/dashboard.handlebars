@@ -12,11 +12,13 @@
     </div>
 
     <div class="d-flex justify-content-center mt-3">
-        <form class="search-form bg-light p-3 rounded col-12">
+        <form class="search-form bg-light p-3 rounded col-12" method="POST" action="/search">
             <div class="mb-2">
-                <input type="text" id="search-field" class="form-control" maxlength="5" placeholder="Enter stock symbol here" required/>
+                <input type="text" id="search-field" name="symbol" class="form-control" maxlength="5" placeholder="Enter stock symbol here" required/>
             </div>
-
+            {{#if error}}
+            <h6>Can't locate that symbol.</h6>
+            {{/if}}
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary col-12">Search</button>
             </div>
@@ -38,5 +40,3 @@
         </article>
     </div>
 </div>
-
-<script src="/javascript/search.js"></script>
