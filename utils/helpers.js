@@ -4,7 +4,7 @@ module.exports = {
             ${new Date(date).getUTCHours()}:${new Date(date).getUTCMinutes()}:${new Date(date).getUTCSeconds()}`;
   },
   format_price: (price) => {
-    return '$' + parseInt((price)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    return '$' + (+price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   },
   if_buy: (type) => {
     if(type == 'buy'){
