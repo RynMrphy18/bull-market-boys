@@ -1,5 +1,5 @@
 {
-  "name": "bull-market-boys",
+  "name": "fomo-mock-exchange",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -28,5 +28,9 @@
     "mysql2": "^2.3.2",
     "sequelize": "^6.8.0",
     "yahoo-finance": "^0.3.7"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "14.17.6"
   }
 }
