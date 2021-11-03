@@ -8,12 +8,12 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err));
 });
 
-router.get('/:symbol', async (req, res) => {
+router.get('/:symbol', (req, res) => {
     const symbol = req.params.symbol;
     Transaction.findAll({where: {symbol: symbol, user_id: req.session.user_id}})
     .then(transactions => {
         if(transactions.length > 0){
-            let stockData = await getStock(symbol);
+            let stockData = getStock(symbol);
             return res.render('transactions', {transactions, stockData, loggedIn: req.session.loggedIn});
         }
         return res.status(404).json('No transactions found!');
