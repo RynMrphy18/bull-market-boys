@@ -16,7 +16,9 @@
             <div class="mb-2">
                 <input type="text" id="search-field" class="form-control" maxlength="5" placeholder="Enter stock symbol here" required/>
             </div>
-
+                {{#if error}}
+                <h6>Can't locate that symbol.</h6>
+                {{/if}}
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary col-12">Search</button>
             </div>

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {User, Holding, Transaction} = require('../../models');
 const {updateUserCash, getUserCash}  = require('../../utils/cash');
 const {userHasStock, userStockQuantity} = require('../../utils/stock');
+const newTransaction = require('../../utils/transact')
 
 router.get('/', (req, res) => {
     Holding.findAll({
@@ -13,7 +14,6 @@ router.get('/', (req, res) => {
         }],
     })
     .then(holdings => res.json(holdings))
-    // .catch(err => console.log(err));
 });
 
 router.get('/:symbol', (req, res) => {
@@ -32,9 +32,7 @@ router.get('/:symbol', (req, res) => {
         if(holdings.length < 1){
             return res.status(404).json({message: 'No holdings found with this symbol.'});
         }
-        return res.render('single-stock', {
-            holdings: holdings.map(holding => holding.toJSON())
-        })
+        return res.json(holdings);
     })
     .catch(err => {
         return res.status(500).json(err);
@@ -53,6 +51,7 @@ router.post('/', async (req, res) => {
 
     let cash = await getUserCash(userId);
 
+    // SEPARATE OUT FOR READABILITY
     // check if the users cash stack is enough to purchase the stock
     if(transactionType === "buy"){
         if(cash >= cost){
@@ -67,13 +66,13 @@ router.post('/', async (req, res) => {
                 // increment the shares of that holding
                 await holding.increment({shares: quantity});
                 // create a transaction after updating the holding
-                Transaction.create({symbol: symbol, price: cost, shares: quantity, type: transactionType, user_id: userId, holding_id: holding.id});
+                newTransaction(symbol, cost, quantity, transactionType, userId, holding.id);
                 return res.status(200).json();
             }else{
                 console.log('user doesnt have the stock, creating a new holding');
                 let holding = await Holding.create({shares: quantity, symbol: symbol, user_id: userId});
                 // create a transaction after creating a holding
-                Transaction.create({symbol: symbol, price: cost, shares: quantity, type: transactionType, user_id: userId, holding_id: holding.id});
+                newTransaction(symbol, cost, quantity, transactionType, userId, holding.id);
                 return res.status(200).json();
             }
         }else{
@@ -83,6 +82,7 @@ router.post('/', async (req, res) => {
         }
     }
 
+    // SEPARATE OUT FOR READABILITY
     // check if the user has the stock and if they have the amount they want to sell
     if(transactionType === "sell"){
         // check if the user has the stock theyre trying to sell & if the quantity they have is greater than or equal to the amount trying to be sold

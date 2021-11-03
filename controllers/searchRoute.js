@@ -11,9 +11,8 @@ router.get('/:symbol', withAuth, async (req, res) => {
         symbol: symbol,
         modules: [ 'price', 'summaryDetail' ]
     })
-    .then(response => {
+    .then(stockData => {
         // create an object with important info from the stock data
-        let stockData = response;
 
         let stock = {
             symbol: symbol,
