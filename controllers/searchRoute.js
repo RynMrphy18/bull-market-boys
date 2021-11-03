@@ -4,6 +4,10 @@ const withAuth = require('../utils/auth');
 const getStock = require('../utils/getStock');
 const validate = require('../utils/validate');
 
+router.get('/', (req, res) => {
+    res.redirect('/dashboard');
+})
+
 router.post('/', withAuth, async (req, res) => {
     const symbol = req.body.symbol;
     // check if the symbol is valid, ONLY LETTERS
