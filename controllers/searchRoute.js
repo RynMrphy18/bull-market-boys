@@ -4,6 +4,7 @@ const withAuth = require('../utils/auth');
 const getStock = require('../utils/getStock');
 const validate = require('../utils/validate');
 
+// refreshing on the /search page will bring the user back to the dashboard instead of throwing wrong routes!
 router.get('/', (req, res) => {
     res.redirect('/dashboard');
 })
