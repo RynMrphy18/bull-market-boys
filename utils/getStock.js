@@ -10,7 +10,7 @@ const getStock = async (symbol) => {
             name: stockData.price.longName,
             symbol: stockData.price.symbol,
             price: stockData.price.regularMarketPrice.toFixed(2),
-            price: stockData.price.regularMarketPrice,
+            // price: stockData.price.regularMarketPrice,
             open: stockData.summaryDetail.open,
             high: stockData.summaryDetail.dayHigh,
             low: stockData.summaryDetail.dayLow,

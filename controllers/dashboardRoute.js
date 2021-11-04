@@ -22,10 +22,11 @@ router.get('/', withAuth, (req, res) => {
         }
         let user = dbUserData.dataValues;
         let holdings = dbUserData.holdings;
+        let cash = user.cash + 0;
         // filter out the holdings where the number of shares equals 0
         holdings = holdings.filter(holding => holding.shares != 0);
         const symbols = holdings.map(holding => holding.dataValues.symbol);
-        const cash = user.cash.toFixed(2)
+        cash = cash.toFixed(2);
         return res.render('dashboard', {user, cash, holdings, symbols: symbols, loggedIn: req.session.loggedIn, dashboard: true});
     })
     .catch(err => console.log(err));
