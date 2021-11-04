@@ -26,8 +26,9 @@
             <div class="col-4">
                 <div class="position-relative">
                     <nav class="position-absolute top-0 end-0">
-                        {{#unless home}}
                         <i class="fas darkModeBtn btn btn-primary mt-2"></i>
+                        {{#unless home}}
+                        {{!-- <i class="fas darkModeBtn btn btn-primary mt-2"></i> --}}
                         {{#if loggedIn}}
                         {{#unless dashboard}}
                         <a href="/dashboard">
