@@ -45,7 +45,9 @@ a:hover {
 }
 
 .signup-form,
-.login-form {
+.login-form,
+.trade-form,
+.search-form {
   box-shadow: 0px 0px 10px 5px #88888850;
 }
 
@@ -65,4 +67,10 @@ main{
 }
 .darkModeBtn {
   font-size: 1.5rem;
+}
+
+.holding:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(33,33,33,.2);
+  transition: all .3s ease-in-out;
 }
