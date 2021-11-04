@@ -14,7 +14,7 @@
     <div class="d-flex justify-content-center mt-3">
         <form class="search-form p-3 rounded col-12" method="POST" action="/search">
             <div class="mb-2">
-                <input type="text" id="search-field" name="symbol" class="form-control symbolSearch" maxlength="5" placeholder="Enter stock symbol here" required/>
+                <input type="text" id="search-field" name="symbol" class="form-control" maxlength="5" placeholder="Enter stock symbol here" required/>
             </div>
             {{#if error}}
             <h6>Can't locate that symbol.</h6>

@@ -1,3 +1,4 @@
+/* Dark Mode */
 .darkmode {
   background-color: #181818;
   color: white;
@@ -15,17 +16,27 @@
   color: white;
 }
 
-.darkmodeSearch {
+.darkmodeInput {
   background-color: #121212;
   border: #292929 2px solid;
-  color: #696969;
+  color: white;
 }
 
-.darkmodeSearch:focus {
+.darkmodeInput:focus {
   background-color: #121212;
   border-color: #0d6efd;
   box-shadow: none;
+  color: white;
 }
+
+.darkModeBtn {
+  font-size: 1.5rem;
+}
+
+.darkModeTable {
+  color: white;
+}
+/* Dark Mode END */
 
 * {
   box-sizing: border-box;
@@ -46,14 +57,10 @@ a:hover {
 
 .signup-form,
 .login-form {
-  box-shadow: 0px 0px 10px 5px #88888850;
+  box-shadow: 0px 0px 10px 3px #88888850;
 }
 
 .signup-form button,
 .login-form button {
   width: 100%;
-}
-
-.darkModeBtn {
-  font-size: 1.5rem;
 }
