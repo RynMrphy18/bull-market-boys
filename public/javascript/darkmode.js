@@ -17,7 +17,7 @@ const enableDarkMode = () => {
   darkModeFooter.classList.add("darkmodeFooter");
   localStorage.setItem("darkMode", "enabled");
 
-  if (route === "/dashboard/" || route === "/login" || route === "/signup") {
+  if (route === "/dashboard" || route === "/login" || route === "/signup" || route === "/search") {
     for (let i = 0; i < darkmodeInput.length; i++) {
       darkmodeInput[i].classList.add('darkmodeInput')
     }
@@ -34,7 +34,7 @@ const disableDarkMode = () => {
     darkModeFooter.classList.remove("darkmodeFooter");
     localStorage.setItem("darkMode", null);
 
-    if (route === "/dashboard/" || route === "/login" || route === "/signup") {
+    if (route === "/dashboard" || route === "/login" || route === "/signup" || route === "/search") {
       for (let i = 0; i < darkmodeInput.length; i++) {
         darkmodeInput[i].classList.remove('darkmodeInput')
       }
