@@ -25,6 +25,7 @@
             <div class="col-4">
                 <div class="position-relative">
                     <nav class="position-absolute top-0 end-0">
+                        {{#unless home}}
                         {{#if loggedIn}}
                         {{#unless dashboard}}
                         <a href="/dashboard">
@@ -44,6 +45,7 @@
                         </a>
                         {{/unless}}
                         {{/if}}
+                        {{/unless}}
                     </nav>
                 </div>
             </div>
