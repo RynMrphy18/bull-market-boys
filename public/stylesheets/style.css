@@ -36,6 +36,14 @@
 .darkModeTable {
   color: white;
 }
+
+.darkModeTable>:not(caption)>*>* {
+  border-bottom: 1px #292929 solid;
+}
+
+.darkModeBtn {
+  font-size: 1.5rem;
+}
 /* Dark Mode END */
 
 * {
@@ -45,14 +53,6 @@
 a,
 a:hover {
   text-decoration: none;
-}
-
-.btn-primary a {
-  color: white;
-}
-
-#cash h3 {
-  margin-bottom: 0px;
 }
 
 .signup-form,
@@ -76,12 +76,14 @@ body{
 main{
   flex: 1 0 auto;
 }
-.darkModeBtn {
-  font-size: 1.5rem;
-}
 
 .holding:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(33,33,33,.2);
-  transition: all .3s ease-in-out;
+  transition: all .3s ease;
+}
+
+.holding {
+  box-shadow: 0 0 10px rgba(33,33,33,.2);
+  transition: all .3s ease;
 }
