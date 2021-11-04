@@ -25,7 +25,8 @@ router.get('/', withAuth, (req, res) => {
         // filter out the holdings where the number of shares equals 0
         holdings = holdings.filter(holding => holding.shares != 0);
         const symbols = holdings.map(holding => holding.dataValues.symbol);
-        return res.render('dashboard', {user, holdings, symbols: symbols, loggedIn: req.session.loggedIn, dashboard: true});
+        const cash = user.cash.toFixed(2)
+        return res.render('dashboard', {user, cash, holdings, symbols: symbols, loggedIn: req.session.loggedIn, dashboard: true});
     })
     .catch(err => console.log(err));
 });
