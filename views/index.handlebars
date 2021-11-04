@@ -1,25 +1,27 @@
-<div class="text-center">
-    <h1 class="mb-3">Welcome to Fomo Mock Exchange!</h1>
-    <h4 class="mb-3">Still regretting that missed buying opportunity?</h4>
-    <h4 class="mb-3">First time trader with no trading experience?</h4>
-    <h4 class="mb-3">This is the place for you!</h4>
-    {{#if loggedIn}}
-    {{#unless dashboard}}
-    <a href="/dashboard">
-        <div class="btn btn-primary">Dashboard</div>
-    </a>
-    {{/unless}}
-    <button id="logout" class="btn btn-outline-danger">Logout</button>
-    {{else}}
-    {{#unless signup}}
-    <a href="/signup">
-        <div class="btn btn-outline-primary">Signup</div>
-    </a>
-    {{/unless}}
-    {{#unless login}}
-    <a href="/login">
-        <div class="btn btn-primary">Login</div>
-    </a>
-    {{/unless}}
-    {{/if}}
-</div>
+<main class="d-flex justify-content-center align-items-center flex-column p-5">
+    <div class="text-center">
+        <h1 class="mb-3">Welcome to Fomo Mock Exchange!</h1>
+        <h4 class="mb-3">Still regretting that missed buying opportunity?</h4>
+        <h4 class="mb-3">First time trader with no trading experience?</h4>
+        <h4 class="mb-3">This is the place for you!</h4>
+        {{#if loggedIn}}
+        {{#unless dashboard}}
+        <a href="/dashboard">
+            <div class="btn btn-primary">Dashboard</div>
+        </a>
+        {{/unless}}
+        <button id="logout" class="btn btn-outline-danger">Logout</button>
+        {{else}}
+        {{#unless signup}}
+        <a href="/signup">
+            <div class="btn btn-outline-primary">Signup</div>
+        </a>
+        {{/unless}}
+        {{#unless login}}
+        <a href="/login">
+            <div class="btn btn-primary">Login</div>
+        </a>
+        {{/unless}}
+        {{/if}}
+    </div>
+</main>
