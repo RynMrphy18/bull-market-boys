@@ -40,14 +40,11 @@
 .darkModeTable>:not(caption)>*>* {
   border-bottom: 1px #292929 solid;
 }
-
-.darkModeBtn {
-  font-size: 1.5rem;
-}
 /* Dark Mode END */
 
 * {
   box-sizing: border-box;
+  transition: background ease 0.4s;
 }
 
 a,
