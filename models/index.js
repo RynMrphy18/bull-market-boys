@@ -6,7 +6,7 @@ const Transaction = require('./Transaction');
 User.hasMany(Holding, {
     foreignKey: 'user_id'
 });
-Holding.belongsTo(User);
+// Holding.belongsTo(User);
 
 // associating the transaction table to the user table thru the user id foreign key
 // i dont know if we need this association -- joe
