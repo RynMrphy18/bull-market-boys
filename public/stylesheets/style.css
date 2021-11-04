@@ -1,3 +1,56 @@
+* {
+  box-sizing: border-box;
+  transition: background ease 0.4s;
+  font-family: 'Nunito Sans', sans-serif;
+  /* transition: background ease 0.4s; */
+}
+
+.border-bottom-trans {
+  border-bottom: 2px solid transparent;
+}
+
+.border-top-trans {
+  border-bottom: 2px solid transparent;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+.signup-form,
+.login-form,
+.trade-form,
+.search-form {
+  box-shadow: 0px 0px 10px 5px #88888850;
+}
+
+.signup-form button,
+.login-form button {
+  width: 100%;
+}
+
+body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main{
+  flex: 1 0 auto;
+}
+
+.holding:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(33,33,33,.2);
+  transition: all .3s ease;
+}
+
+.holding {
+  box-shadow: 0 0 10px rgba(33,33,33,.2);
+  transition: all .3s ease;
+}
+
 /* Dark Mode */
 .darkmode {
   background-color: #181818;
@@ -40,47 +93,8 @@
 .darkModeTable>:not(caption)>*>* {
   border-bottom: 1px #292929 solid;
 }
+
+.table>:not(:first-child) {
+  border-top: 2px solid #292929;
+}
 /* Dark Mode END */
-
-* {
-  box-sizing: border-box;
-  transition: background ease 0.4s;
-}
-
-a,
-a:hover {
-  text-decoration: none;
-}
-
-.signup-form,
-.login-form,
-.trade-form,
-.search-form {
-  box-shadow: 0px 0px 10px 5px #88888850;
-}
-
-.signup-form button,
-.login-form button {
-  width: 100%;
-}
-
-body{
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main{
-  flex: 1 0 auto;
-}
-
-.holding:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(33,33,33,.2);
-  transition: all .3s ease;
-}
-
-.holding {
-  box-shadow: 0 0 10px rgba(33,33,33,.2);
-  transition: all .3s ease;
-}
