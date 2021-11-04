@@ -1,3 +1,30 @@
+.darkmode {
+  background-color: #181818;
+  color: white;
+}
+
+.darkmodeHeader {
+  background-color: #202020;
+  border-bottom: #292929 2px solid;
+  color: white;
+}
+
+.darkmodeFooter {
+  background-color: #202020;
+  border-top: #292929 2px solid;
+  color: white;
+}
+
+.darkmodeSearch {
+  background-color: #121212;
+  border: #292929 2px solid;
+  color: #696969;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 a, a:hover {
     text-decoration: none;
 }
@@ -18,4 +45,8 @@ a, a:hover {
 .signup-form button, 
 .login-form button {
   width: 100%;
+}
+
+.darkModeBtn {
+  font-size: 1.5rem;
 }

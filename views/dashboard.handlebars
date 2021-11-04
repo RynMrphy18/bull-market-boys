@@ -1,20 +1,20 @@
 <div class="row pb-3">
     <div class="col-12 text-center">
-        <h2>Hello, {{user.username}}!</h2>
+        <h2>Welcome, {{user.username}}!</h2>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12">
         <div id="cash" class="bg-success text-white text-center rounded-pill p-2">
-            <h3><span class="iconify" data-icon="emojione:money-bag"></span> Cash: ${{user.cash}}</h3>
+            <h3><span class="iconify-inline" data-icon="emojione:money-bag"></span> Cash: ${{user.cash}}</h3>
         </div>
     </div>
 
     <div class="d-flex justify-content-center mt-3">
-        <form class="search-form bg-light p-3 rounded col-12" method="POST" action="/search">
+        <form class="search-form p-3 rounded col-12" method="POST" action="/search">
             <div class="mb-2">
-                <input type="text" id="search-field" name="symbol" class="form-control" maxlength="5" placeholder="Enter stock symbol here" required/>
+                <input type="text" id="search-field" name="symbol" class="form-control symbolSearch" maxlength="5" placeholder="Enter stock symbol here" required/>
             </div>
             {{#if error}}
             <h6>Can't locate that symbol.</h6>
