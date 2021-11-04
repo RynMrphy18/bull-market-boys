@@ -1,5 +1,20 @@
-<ul>
-    {{#each holdings}}
-    {{> stocks/stock-block}}
-    {{/each}}
-</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Current Price</th>
+            <th scope="col">Day High</th>
+            <th scope="col">Day Low</th>
+            <th scope="col">52 Week High</th>
+            <th scope="col">52 Week Low</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{> stocks/stock-block stock}}
+    </tbody>
+</table>
+
+{{> trade-block}}
+
+<script src="/javascript/trade.js"></script>

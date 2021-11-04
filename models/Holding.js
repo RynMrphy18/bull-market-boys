@@ -22,14 +22,6 @@ Holding.init(
             allowNull: false
         },
 
-        // transaction_id: {
-        //     type: DataTypes.UUID,
-        //     references: {
-        //         model: 'transaction',
-        //         key: 'id'
-        //     }
-        // },
-
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -43,7 +35,7 @@ Holding.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'holding'
+        modelName: 'holding',
     }
 )
 

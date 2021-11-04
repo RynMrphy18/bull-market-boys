@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+        <td colspan="5" class="text-center lead">Your {{transactions.0.dataValues.symbol}} Transactions</th>
+        <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Price</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Type</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each transactions as |transaction|}}
+        {{> transactions-block transaction.dataValues}}
+        {{/each}}
+    </tbody>
+</table>
+
+{{> trade-block}}
+
+<script src="/javascript/trade.js"></script>
