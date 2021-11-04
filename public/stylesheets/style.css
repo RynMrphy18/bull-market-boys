@@ -1,3 +1,4 @@
+/* Dark Mode */
 .darkmode {
   background-color: #181818;
   color: white;
@@ -15,17 +16,27 @@
   color: white;
 }
 
-.darkmodeSearch {
+.darkmodeInput {
   background-color: #121212;
   border: #292929 2px solid;
-  color: #696969;
+  color: white;
 }
 
-.darkmodeSearch:focus {
+.darkmodeInput:focus {
   background-color: #121212;
   border-color: #0d6efd;
   box-shadow: none;
+  color: white;
 }
+
+.darkModeBtn {
+  font-size: 1.5rem;
+}
+
+.darkModeTable {
+  color: white;
+}
+/* Dark Mode END */
 
 * {
   box-sizing: border-box;
