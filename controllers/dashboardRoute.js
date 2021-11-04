@@ -22,7 +22,7 @@ router.get('/', withAuth, (req, res) => {
         }
         let user = dbUserData.dataValues;
         let holdings = dbUserData.holdings;
-        let cash = user.cash + 0;
+        let cash = (+user.cash);
         // filter out the holdings where the number of shares equals 0
         holdings = holdings.filter(holding => holding.shares != 0);
         const symbols = holdings.map(holding => holding.dataValues.symbol);
