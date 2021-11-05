@@ -9,24 +9,15 @@ Fomo Mock Exchange is a stock trading site for people who want to play with the 
 
 1. [Live Site](#liveSite)
 2. [Preview](#sitePreview)
-3. [Installation](#install)
-4. [Useage](#use)
-5. [Technologies](#tech)
-6. [Contribute](#contribute)
-7. [License](#license)
+3. [Useage](#use)
+4. [Technologies](#tech)
+5. [Contribute](#contribute)
+6. [License](#license)
 
 ## Live Site <a id="liveSite"></a>
 [Fomo Mock Exchange](https://agile-escarpment-74741.herokuapp.com/)
 ## Preview <a id="sitePreview"></a>
 [![Fomo Mock Exchange Preview](./public/images/preview.png)](https://agile-escarpment-74741.herokuapp.com/)
-## Installation <a id="install"></a>
-
-Use [npm](https://www.npmjs.com/) to install the dependencies
-
-```bash
-npm install
-```
-
 ## Usage <a id="use"></a>
 
 ```bash
