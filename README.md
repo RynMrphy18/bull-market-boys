@@ -1,9 +1,7 @@
-# Fomo Mock Exchange
-
 [![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/RynMrphy18/fomo-mock-exchange/blob/main/LICENSE)
 [![GitHub Contributors](https://img.shields.io/github/contributors/RynMrphy18/fomo-mock-exchange)](https://github.com/RynMrphy18/fomo-mock-exchange/graphs/contributors)
 [![Website](https://img.shields.io/website-up-down-green-red/https/agile-escarpment-74741.herokuapp.com)](https://agile-escarpment-74741.herokuapp.com/)
-
+# Fomo Mock Exchange
 
 Fomo Mock Exchange is a stock trading site for people who want to play with the current stock market and not have the risk of losing their personal earnings.
 
