@@ -1,6 +1,6 @@
 let darkMode = localStorage.getItem("darkMode");
 const darkModeBtn = document.querySelector(".darkModeBtn");
-const darkModeHeader = document.querySelector("header");
+const darkModeHeader = document.querySelector("nav");
 const darkModeFooter = document.querySelector("footer");
 const darkModeTable = document.querySelector(".table");
 const darkmodeInput = document.querySelectorAll(".form-control");
