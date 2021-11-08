@@ -11,30 +11,25 @@
         <button
         class="navbar-toggler"
         type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarButtonsExample"
-        aria-controls="navbarButtonsExample"
+        data-bs-toggle="collapse"
+        data-bs-target="#toggleMobileMenu"
+        aria-controls="toggleMobileMenu"
         aria-expanded="false"
         aria-label="Toggle navigation"
         >
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars" style="color: rgb(13, 110, 253);"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <div class="collapse navbar-collapse" id="toggleMobileMenu">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {{!-- <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                </li> --}}
             </ul>
 
-            <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center">
                 <i class="fas darkModeBtn btn btn-primary me-2"></i>
                 {{#unless home}}
                 {{#if loggedIn}}
                 {{#unless dashboard}}
-                <a href="/dashboard">
-                    <div class="btn btn-primary me-2">Dashboard</div>
-                </a>
+                <a class="btn btn-primary me-2" href="/dashboard" role="button">Dashboard</a>
                 {{/unless}}
                 <button id="logout" class="btn btn-outline-danger">Logout</button>
                 {{else}}
