@@ -15,35 +15,40 @@
 
 <body>
     <header class="container-fluid border-bottom-trans">
-        <div class="row p-2">
-            <div class="col-8">
-                <h1>
-                    <a href="/"><span class="iconify-inline" data-icon="ri:exchange-dollar-fill"></span> Fomo Mock Exchange</a>
-                </h1>
+        <div class="row p-3">
+            <div class="col-12 col-sm-8">
+                    <h1>
+                        <a href="/"><span class="iconify-inline" data-icon="ri:exchange-dollar-fill"></span> Fomo Mock Exchange</a>
+                    </h1>
             </div>
-            <div class="col-4">
-                <i class="fas darkModeBtn btn btn-primary mt-2 float-end "></i>
-                {{#unless home}}
-                {{#if loggedIn}}
-                {{#unless dashboard}}
-                <a href="/dashboard">
-                    <div class="btn btn-primary mt-2 float-end">Dashboard</div>
-                </a>
-                {{/unless}}
-                <button id="logout" class="btn btn-outline-danger mt-2 float-end">Logout</button>
-                {{else}}
-                {{#unless signup}}
-                <a href="/signup">
-                    <div class="btn btn-outline-primary mt-2 float-end">Signup</div>
-                </a>
-                {{/unless}}
-                {{#unless login}}
-                <a href="/login">
-                    <div class="btn btn-outline-primary mt-2 float-end">Login</div>
-                </a>
-                {{/unless}}
-                {{/if}}
-                {{/unless}}
+            <div class="col-12 col-sm-4">
+                <div class="position-relative">
+                    <nav class="position-absolute top-0 end-0">
+                        <i class="fas darkModeBtn btn btn-primary mt-2"></i>
+                        {{#unless home}}
+                        {{!-- <i class="fas darkModeBtn btn btn-primary mt-2"></i> --}}
+                        {{#if loggedIn}}
+                        {{#unless dashboard}}
+                        <a href="/dashboard">
+                            <div class="btn btn-primary mt-2">Dashboard</div>
+                        </a>
+                        {{/unless}}
+                        <button id="logout" class="btn btn-outline-danger mt-2">Logout</button>
+                        {{else}}
+                        {{#unless signup}}
+                        <a href="/signup">
+                            <div class="btn btn-outline-primary mt-2">Signup</div>
+                        </a>
+                        {{/unless}}
+                        {{#unless login}}
+                        <a href="/login">
+                            <div class="btn btn-outline-primary mt-2">Login</div>
+                        </a>
+                        {{/unless}}
+                        {{/if}}
+                        {{/unless}}
+                    </nav>
+                </div>
             </div>
         </div>
     </header>
