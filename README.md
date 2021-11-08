@@ -17,12 +17,8 @@ Fomo Mock Exchange is a stock trading site for people who want to play with the 
 ## Live Site <a id="liveSite"></a>
 [Fomo Mock Exchange](https://fomo-exchange.herokuapp.com/)
 ## Preview <a id="sitePreview"></a>
-[![Fomo Mock Exchange Preview](./public/images/preview.png)](https://agile-escarpment-74741.herokuapp.com/)
-## Usage <a id="use"></a>
+[![Fomo Mock Exchange Preview](./public/images/preview.png)](https://fomo-exchange.herokuapp.com/)
 
-```bash
-npm start
-```
 
 ## Technologies <a id="tech"></a>
 
