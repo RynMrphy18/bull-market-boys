@@ -14,46 +14,55 @@
 </head>
 
 <body>
+
     <header class="container-fluid border-bottom-trans">
         <div class="row p-2">
-            <div class="col-8">
+            <div class="col-12 col-sm-10">
                 <h1>
                     <a href="/"><span class="iconify-inline" data-icon="ri:exchange-dollar-fill"></span> Fomo Mock Exchange</a>
                 </h1>
             </div>
-            <div class="col-4">
-                <i class="fas darkModeBtn btn btn-primary mt-2 float-end "></i>
+
+            <div class="col-12 col-lg-2 p-2">
+                <i class="fas darkModeBtn btn btn-primary"></i>
                 {{#unless home}}
                 {{#if loggedIn}}
                 {{#unless dashboard}}
                 <a href="/dashboard">
-                    <div class="btn btn-primary mt-2 float-end">Dashboard</div>
+                    <div class="btn btn-primary">Dashboard</div>
                 </a>
                 {{/unless}}
-                <button id="logout" class="btn btn-outline-danger mt-2 float-end">Logout</button>
+                <button id="logout" class="btn btn-outline-danger">Logout</button>
                 {{else}}
                 {{#unless signup}}
                 <a href="/signup">
-                    <div class="btn btn-outline-primary mt-2 float-end">Signup</div>
+                    <div class="btn btn-outline-primary">Signup</div>
                 </a>
                 {{/unless}}
                 {{#unless login}}
                 <a href="/login">
-                    <div class="btn btn-outline-primary mt-2 float-end">Login</div>
+                    <div class="btn btn-outline-primary">Login</div>
                 </a>
                 {{/unless}}
                 {{/if}}
                 {{/unless}}
             </div>
+
         </div>
     </header>
+
     {{{ body }}}
-    <footer class="container-fluid text-center pt-3 border-top-trans">
-        <p>Created by <a href="https://github.com/trippjoe" target="_blank">trippjoe</a>, <a href="https://github.com/JPDBrodeur" target="_blank">JPDBrodeur</a>, <a href="https://github.com/RynMrphy18" target="_blank">RynMrphy18</a> & <a href="https://github.com/PandolfoM" target="_blank">PandolfoM</a></p>
+
+    <footer class="border-top-trans text-center">
+        <div class="pt-3">
+            <p>Created by <a href="https://github.com/trippjoe" target="_blank">trippjoe</a>, <a href="https://github.com/JPDBrodeur" target="_blank">JPDBrodeur</a>, <a href="https://github.com/RynMrphy18" target="_blank">RynMrphy18</a> & <a href="https://github.com/PandolfoM" target="_blank">PandolfoM</a></p>
+        </div>
     </footer>
+
     {{#if loggedIn}}
         <script src="/javascript/logout.js"></script>
     {{/if}}
+
 </body>
 <script src="/javascript/darkmode.js"></script>
 <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
