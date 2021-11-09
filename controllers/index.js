@@ -11,7 +11,7 @@ router.use('/api', apiRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/transaction', transactionRoutes);
 router.use('/search', searchRoutes);
-router.use('/highscores', highscoresRoutes);
+// router.use('/highscores', highscoresRoutes);
 
 router.use((req, res) => {
     return res.send("<h1>Wrong Route!</h1>");
