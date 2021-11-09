@@ -10,12 +10,11 @@
 
     <div class="row pt-4">
         <div class="col-12 text-center">
+            <i class="fas darkModeBtn btn btn-primary"></i>
             {{#if loggedIn}}
-            {{#unless dashboard}}
             <a href="/dashboard">
                 <div class="btn btn-primary">Dashboard</div>
             </a>
-            {{/unless}}
             <button id="logout" class="btn btn-outline-danger">Logout</button>
             {{else}}
             {{#unless signup}}
