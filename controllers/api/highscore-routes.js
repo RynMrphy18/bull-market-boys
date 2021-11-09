@@ -15,13 +15,13 @@ router.get('/stock', (req, res) => {
 });
 
 // return the player with the highest net assets and least amount of trades
-router.get('/user', (req, res) => {
-    User.findOne({
-        where: {
-            // net assets is the greatest
-        }
-    })
-    .then(user => res.json(user))
-});
+// router.get('/user', (req, res) => {
+//     User.findOne({
+//         where: {
+//             // net assets is the greatest
+//         }
+//     })
+//     .then(user => res.json(user))
+// });
 
 module.exports = router;
