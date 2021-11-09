@@ -7,7 +7,7 @@ const validate = require('../utils/validate');
 // refreshing on the /search page will bring the user back to the dashboard instead of throwing wrong routes!
 router.get('/', (req, res) => {
     res.redirect('/dashboard');
-})
+});
 
 router.post('/', withAuth, async (req, res) => {
     const symbol = req.body.symbol;
@@ -21,7 +21,6 @@ router.post('/', withAuth, async (req, res) => {
         }catch(error){
             // return the user to the dashboard and display the error
             return res.redirect('/dashboard');
-            // return res.render('dashboard', {error: error, loggedIn: req.session.loggedIn});
         }
     }else{
         // return the user to the dashboard if symbol invalid
