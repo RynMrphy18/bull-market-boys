@@ -1,10 +1,15 @@
-<main class="d-flex justify-content-center align-items-center flex-column p-5">
-    <div class="text-center">
-        <h1 class="mb-3">Time to make all that fomo pay off!</h1>
-        <p class="mb-3">Still regretting that missed buying opportunity?</p>
-        <p class="mb-3">First time trader with no trading experience?</p>
-        <p class="mb-3">Yep, this is the place for you.</p>
-        <div class="m-4">
+<main class="container-fluid">
+    <div class="row pt-4">
+        <div class="col-12 text-center">
+            <h1 class="mb-3">Time to make all that fomo pay off!</h1>
+            <p class="mb-3">Still regretting that missed buying opportunity?</p>
+            <p class="mb-3">First time trader with no trading experience?</p>
+            <p class="mb-3">Yep, this is the place for you.</p>
+        </div>
+    </div>
+
+    <div class="row pt-4">
+        <div class="col-12 text-center">
             {{#if loggedIn}}
             {{#unless dashboard}}
             <a href="/dashboard">
@@ -26,5 +31,10 @@
             {{/if}}
         </div>
     </div>
-    {{> chart-block}}
+
+    <div class="row pt-4">
+        <div class="col-12 offset-md-4 col-md-4 mb-3">
+            {{> chart-block}}
+        </div>
+    </div>
 </main>
