@@ -1,41 +1,37 @@
-<main class="d-flex align-items-center flex-column p-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="float-start text-center">
-                <h2 class="display-6">Welcome, {{user.username}}!</h2>
-            </div>
-            <div class="float-end">
-                <h2><span class="iconify" data-icon="emojione:money-bag"></span> Balance: ${{cash}}</h2>
-            </div>
+<main class="container-fluid">
+    <div class="row pt-4">
+        <div class="col-12 text-center mb-3">
+            {{!-- <h2 class="display-6">Welcome, {{user.username}}!</h2> --}}
+            <h2><span class="iconify" data-icon="emojione:money-bag"></span> Balance: ${{cash}}</h2>
         </div>
+    </div>
 
-        <div class="d-flex justify-content-center mt-3">
-            <form class="search-form p-3 rounded col-6" method="POST" action="/search">
+    <div class="row pt-2">
+        <div class="col-12 offset-md-3 col-md-6 mb-3">
+            <form class="search-form p-3 rounded" method="POST" action="/search">
                 <div class="mb-2">
                     <input type="text" id="search-field" name="symbol" class="form-control" maxlength="5" placeholder="Enter stock symbol here" required/>
                 </div>
-                {{#if error}}
-                <h6>Can't locate that symbol.</h6>
-                {{/if}}
                 <div>
                     <button type="submit" class="btn btn-primary col-12">Search</button>
                 </div>
             </form>
         </div>
+    </div>
 
-        <div class="col-12 mt-4">
-            <article class="holding-list rounded p-4 bg-opacity-25">
+    <div class="row pt-2">
+        <div class="col offset-md-3 col-md-6 mb-3">
+            <div class="p-3 rounded holding-list">
                 {{#if holdings}}
-                <h3 class="text-center mb-4">Your Current Holdings:</h3>
-                <div class="d-flex flex-row justify-content-evenly">
-                    {{#each holdings as |holding|}}
-                        {{> holdings-block holding.dataValues}}
-                    {{/each}}
-                </div>
+                <h3 class="text-center mb-4">Investments</h3>
                 {{else}}
-                <p class="text-center mb-0">No holdings yet.</p>
+                <p class="text-center mb-0">No investments yet.</p>
                 {{/if}}
-            </article>
+
+                {{#each holdings as |holding|}}
+                    {{> holdings-block holding.dataValues}}
+                {{/each}}
+            </div>
         </div>
     </div>
 </main>
