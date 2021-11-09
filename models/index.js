@@ -6,12 +6,13 @@ const Transaction = require('./Transaction');
 User.hasMany(Holding, {
     foreignKey: 'user_id'
 });
-// Holding.belongsTo(User);
+Holding.belongsTo(User);
 
 // associating the transaction table to the user table thru the user id foreign key
 // i dont know if we need this association -- joe
 // User.hasMany(Transaction, {
-//     foreignKey: 'user_id'
+//     foreignKey: 'user_id',
+//     onDelete: 'CASCADE'
 // }); 
 // Transaction.belongsTo(User);
 
@@ -19,7 +20,7 @@ Transaction.belongsTo(Holding);
 Holding.hasMany(Transaction, {
     foreignKey: 'holding_id',
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+    onDelete: 'CASCADE'
 });
 
 module.exports = {User, Holding, Transaction};

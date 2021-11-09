@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const e = require('express');
 const {User, Holding, Transaction} = require('../../models');
 
 // get all users
@@ -76,5 +77,26 @@ router.post('/logout', (req, res) => {
         return res.status(404).end();
     }
 });
+
+router.get('/delete', (req, res) => {
+    if (req.session.loggedIn) {
+        // delete transactions associated with user
+        Transaction.destroy({where: {user_id: req.session.user_id}});
+        // delete user
+        User.destroy({
+            where: {
+                id: req.session.user_id
+            },
+        })
+        .then(response => {
+            // destroy user session (forces logout)
+            req.session.destroy();
+            // redirect back to index page
+            return res.redirect('/');
+        });
+    }else{
+        res.redirect('/');
+    }
+})
 
 module.exports = router;
