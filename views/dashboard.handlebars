@@ -20,19 +20,18 @@
     </div>
 
     <div class="row pt-2">
-        <div class="col-12 offset-md-3 col-md-6 mb-3">
-            <article class="holding-list rounded p-4 bg-opacity-25">
+        <div class="col offset-md-3 col-md-6 mb-3">
+            <div class="p-3 rounded holding-list">
                 {{#if holdings}}
                 <h3 class="text-center mb-4">Investments</h3>
-                <div>
-                    {{#each holdings as |holding|}}
-                        {{> holdings-block holding.dataValues}}
-                    {{/each}}
-                </div>
                 {{else}}
                 <p class="text-center mb-0">No investments yet.</p>
                 {{/if}}
-            </article>
+
+                {{#each holdings as |holding|}}
+                    {{> holdings-block holding.dataValues}}
+                {{/each}}
+            </div>
         </div>
     </div>
 </main>
