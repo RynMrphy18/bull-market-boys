@@ -1,21 +1,28 @@
-<main class="d-flex align-items-center flex-column p-5">
-    <div class="symbol-wrapper text-center">
+<main class="container-fluid pt-4">
+    <div class="row text-center">
         <h1 class="display-1"><span id="symbol">{{stock.symbol}}</span></h1>
     </div>
-    <div id="price-wrapper" class="text-center mt-3">
+
+    <div class="row text-center mt-3">
         <p class="mb-0">Current Price:</p>
         <p class="fs-2"><strong>$<span id="price">{{stock.price}}</span></strong></p>
     </div>
+
     <div class="row">
-        <div class="col m-4 text-center">
-            <h6 class="text-center border-bottom text-uppercase">Day</h6>
-            <p class="mb-2">High: {{stock.high}}</p>
-            <p>Low: {{stock.low}}</p>
+        <div class="col-6 offset-md-4 col-md-2 mb-3 text-center">
+            <div class="col-4 offset-4">
+                <h6 class="text-center border-bottom text-uppercase">Day</h6>
+            </div>
+            <p class="mb-2">High: {{format_price stock.high}}</p>
+            <p>Low: {{format_price stock.low}}</p>
         </div>
-        <div class="col m-4 text-center">
-            <h6 class="text-center border-bottom text-uppercase">Year</h6>
-            <p class="mb-2">High: {{stock.yearHigh}}</p>
-            <p>Low: {{stock.yearLow}}</p>
+
+        <div class="col-6 col-md-2 mb-3 text-center">
+            <div class="col-4 offset-4">
+                <h6 class="text-center border-bottom text-uppercase">Year</h6>
+            </div>
+            <p class="mb-2">High: {{format_price stock.yearHigh}}</p>
+            <p>Low: {{format_price stock.yearLow}}</p>
         </div>
     </div>
 
