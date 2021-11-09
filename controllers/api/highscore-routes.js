@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const {User, Holding, Transaction} = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // return the top ten stocks with the most (activity) transactions
-router.get('/stock', (req, res) => {
+router.get('/stock', withAuth, (req, res) => {
     Transaction.count({
         group: 'symbol',
         attributes: ['symbol']
