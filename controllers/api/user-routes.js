@@ -97,6 +97,6 @@ router.get('/delete', (req, res) => {
     }else{
         res.redirect('/');
     }
-})
+});
 
 module.exports = router;
