@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Holding, Transaction, Stock} = require('../../models');
+const {User, Holding, Transaction} = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {

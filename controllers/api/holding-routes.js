@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
             user_id: req.session.user_id
         },
         include: [{
-                model: Transaction
+            model: Transaction
         }],
     })
     .then(holdings => res.json(holdings))
